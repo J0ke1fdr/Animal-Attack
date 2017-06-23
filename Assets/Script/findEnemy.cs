@@ -12,13 +12,29 @@ public class findEnemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if(currentEnemy != null)
-            transform.LookAt(currentEnemy.transform);
+        {
+            //Debug.Log(Vector3.Distance(currentEnemy.transform.position, transform.position));
+            if (Vector3.Distance(currentEnemy.transform.position, transform.position) > 60)
+            {
+                currentEnemy = null;
+            }
+            else
+            {
+                transform.LookAt(currentEnemy.transform);
+            }
+        }
+            
+            
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        currentEnemy = other.gameObject;
-        Debug.Log("find enemy");
+        if(currentEnemy == null)
+        {
+            currentEnemy = other.gameObject;
+            Debug.Log("find enemy");
+        }
         
     }
+
 }

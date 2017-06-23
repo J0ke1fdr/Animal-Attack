@@ -33,8 +33,8 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     {
         get
         {
-            if (touchedAxis.magnitude < JoyStickRadius)
-                return touchedAxis.normalized / JoyStickRadius;
+            //if (touchedAxis.magnitude < JoyStickRadius)
+             //   return touchedAxis.normalized / JoyStickRadius;
             return touchedAxis.normalized;
         }
     }
