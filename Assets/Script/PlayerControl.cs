@@ -9,10 +9,15 @@ public class PlayerControl : MonoBehaviour {
     public float speed = 0.07f;                   
 
     private CharacterController controller;
+
     private Vector3 moveDirection;
     private Vector3 flipDirection;
     private bool moving = false;
     private bool attack = false;
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 
 	void Start ()
     {
@@ -36,6 +41,10 @@ public class PlayerControl : MonoBehaviour {
     }
     //左手摇杆接触开始
     void OnLeftJoyStickBegin(Vector2 move)
+<<<<<<< HEAD
+    {
+        //Debug.Log("touch begin.");
+=======
     {
         //Debug.Log("touch begin.");
         moving = true;
@@ -43,14 +52,63 @@ public class PlayerControl : MonoBehaviour {
     //左手摇杆移动
     void OnLeftJoyStickMove(Vector2 move)
     {
+
+        Debug.Log("touch begin.");
+>>>>>>> master
+        moving = true;
+
         //Debug.Log("move: " + move.x + "," + move.y);
         moveDirection = new Vector3(move.x, 0, move.y);
     }
+<<<<<<< HEAD
+    //左手摇杆移动
+    void OnLeftJoyStickMove(Vector2 move)
+    {
+        //Debug.Log("move: " + move.x + "," + move.y);
+=======
     //左手摇杆接触结束
     void OnLeftJoyStickEnd()
     {
         //Debug.Log("touch end.");
         moving = false;
+
+    }
+
+    //右手摇杆接触开始
+    void OnRightJoyStickBegin(Vector2 move)
+    {
+
+        Debug.Log("move: " + move.x + "," + move.y);
+        //Vector3 dir = new Vector3(move.x * speed, 0, move.y * speed);
+        //controller.Move(dir);
+>>>>>>> master
+        moveDirection = new Vector3(move.x, 0, move.y);
+
+        //开火
+        attack = true;
+    }
+<<<<<<< HEAD
+    //左手摇杆接触结束
+    void OnLeftJoyStickEnd()
+=======
+    //右手摇杆移动
+    void OnRightJoyStickMove(Vector2 move)
+    {
+        flipDirection = new Vector3(move.x, 0, move.y);
+
+        transform.rotation = Quaternion.LookRotation(flipDirection );
+    }
+    //右手摇杆接触结束
+    void OnRightJoyStickEnd()
+    {
+        attack = false;
+    }
+    public bool CheckAttack()
+>>>>>>> master
+    {
+        //Debug.Log("touch end.");
+        moving = false;
+        return attack;
     }
 
     //右手摇杆接触开始
