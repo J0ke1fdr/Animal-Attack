@@ -34,7 +34,7 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         get
         {
             //if (touchedAxis.magnitude < JoyStickRadius)
-             //   return touchedAxis.normalized / JoyStickRadius;
+            //    return touchedAxis.normalized / JoyStickRadius;
             return touchedAxis.normalized;
         }
     }
@@ -96,13 +96,13 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         //当虚拟摇杆移动到最大半径时摇杆无法拖动
         //为了确保被控制物体可以继续移动
         //在这里手动触发OnJoyStickTouchMove事件
-        if (isTouched && touchedAxis.magnitude >= JoyStickRadius)
+        if (isTouched && touchedAxis.magnitude > 0)
         {
             if (this.OnJoyStickTouchMove != null)
                 this.OnJoyStickTouchMove(TouchedAxis);
         }
         //松开虚拟摇杆后让虚拟摇杆回到默认位置
-        if (selfTransform.anchoredPosition.magnitude > originPosition.magnitude)
+        if ( !isTouched && selfTransform.anchoredPosition.magnitude > originPosition.magnitude)
             selfTransform.anchoredPosition -= TouchedAxis * Time.deltaTime * JoyStickResetSpeed;
 
 
