@@ -32,15 +32,7 @@ public class camera_follow : MonoBehaviour {
     {
         return Mathf.Abs(transform.position.z - player.position.z) > zMargin;
     }
-
-
-    void FixedUpdate()
-    {
-
-        TrackPlayer();
-        //transform.LookAt(player);
-    }
-
+    
 
     void TrackPlayer()
     {
@@ -58,10 +50,11 @@ public class camera_follow : MonoBehaviour {
         targetX = Mathf.Clamp(targetX, minXAndZ.x, maxXAndZ.x);
         targetZ = Mathf.Clamp(targetZ, minXAndZ.z, maxXAndZ.z);
 
-        transform.position = new Vector3(targetX, transform.position.y, targetZ);
+        //transform.position = new Vector3(targetX, transform.position.y, targetZ);
+        transform.position = new Vector3(player.position.x, transform.position.y, targetZ - 2);
     }
-    public void Update()
+    public void LateUpdate()
     {
-
+        TrackPlayer();
     }
 }

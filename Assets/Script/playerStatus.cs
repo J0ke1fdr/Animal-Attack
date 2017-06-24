@@ -10,12 +10,14 @@ public class playerStatus : MonoBehaviour {
     // Use this for initialization
     void Start () {
         health = 100;
-        equip = 0;
+        equip = 1;
         /* equip list:
          * pistol  0
          * rifle   1
          * shotgun 2
          */
+        weapon_list[1] = 100;
+        weapon_list[2] = 100;
     }
 
     // Update is called once per frame
