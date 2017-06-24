@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour {
 
     //public GameObject blood;
     // Use this for initialization
-    public GameObject man;
+    //public GameObject man;
     void Start()
     {
         GetComponent<Rigidbody>().velocity = transform.forward * 200;
