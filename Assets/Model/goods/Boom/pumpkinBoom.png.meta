@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Model/goods/Boom/pumpkinBoom.png.meta
 guid: ee2d9ef8ce3147647a9f4d4a33101b65
 timeCreated: 1498205531
+=======
+guid: b611fb950054d9e4ab39031f259efbd2
+timeCreated: 1498208463
+>>>>>>> 2f2c825676328cef5026ce3a5349b5f47c194193:Assets/Model/goods/Boom/pumpkinBoom.png.meta
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}

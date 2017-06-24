@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Model/goods/Boom/pumpkinBoom.mtl.meta
 guid: 8ac24b5158f602e40bad454887f1e774
 timeCreated: 1498205531
+=======
+guid: 2040541bb3067b745a170454ceb4d7fe
+timeCreated: 1498208463
+>>>>>>> 2f2c825676328cef5026ce3a5349b5f47c194193:Assets/Model/goods/Boom/pumpkinBoom.mtl.meta
 licenseType: Free
 DefaultImporter:
   userData: 

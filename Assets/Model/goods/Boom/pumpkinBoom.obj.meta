@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Model/goods/Boom/pumpkinBoom.obj.meta
 guid: 4d0178e5afb3a0240879b5c6b5ba618a
 timeCreated: 1498205531
+=======
+guid: 2d2ae6441f2153248903ae4a8e35c73d
+timeCreated: 1498208464
+>>>>>>> 2f2c825676328cef5026ce3a5349b5f47c194193:Assets/Model/goods/Boom/pumpkinBoom.obj.meta
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
