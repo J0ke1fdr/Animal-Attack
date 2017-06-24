@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour {
     private Vector3 moveDirection;
     private Vector3 flipDirection;
     private bool moving = false;
+    private bool attack = false;
 
 	void Start ()
     {
@@ -56,6 +57,8 @@ public class PlayerControl : MonoBehaviour {
     void OnRightJoyStickBegin(Vector2 move)
     {
         //开火
+        attack = true;
+        Debug.Log("attack!");
     }
     //右手摇杆移动
     void OnRightJoyStickMove(Vector2 move)
@@ -67,7 +70,12 @@ public class PlayerControl : MonoBehaviour {
     //右手摇杆接触结束
     void OnRightJoyStickEnd()
     {
-
+        attack = false;
+        Debug.Log("stop attack!");
     }
-
+    
+    public bool CheckAttack()
+    {
+        return attack;        
+    }
 }
