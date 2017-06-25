@@ -16,9 +16,6 @@ public class camera_follow : MonoBehaviour {
 
     void Start()
     {
-        //player = GameObject.Find("man").transform;
-
-
     }
 
 
@@ -40,20 +37,20 @@ public class camera_follow : MonoBehaviour {
         float targetZ = transform.position.z;
 
         if (CheckXMargin())
-          
-            targetX = Mathf.Lerp(transform.position.x, player.position.x, xSmooth * Time.deltaTime);
+
+               //targetX = Mathf.Lerp(transform.position.x, player.position.x, xSmooth * Time.deltaTime);
+                targetX = Mathf.Lerp(transform.position.x, player.position.x, xSmooth);
 
         if (CheckzMargin())
 
-            targetZ = Mathf.Lerp(transform.position.z, player.position.z, zSmooth * Time.deltaTime);
+            targetZ = Mathf.Lerp(transform.position.z, player.position.z - 30, zSmooth);
 
         targetX = Mathf.Clamp(targetX, minXAndZ.x, maxXAndZ.x);
         targetZ = Mathf.Clamp(targetZ, minXAndZ.z, maxXAndZ.z);
 
-        //transform.position = new Vector3(targetX, transform.position.y, targetZ);
-        transform.position = new Vector3(player.position.x, transform.position.y, targetZ - 2);
+        transform.position = new Vector3(targetX, transform.position.y, targetZ);
     }
-    public void LateUpdate()
+    public void Update()
     {
         TrackPlayer();
     }
