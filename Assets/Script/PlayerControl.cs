@@ -67,9 +67,8 @@ public class PlayerControl : MonoBehaviour {
     //右手摇杆移动
     void OnRightJoyStickMove(Vector2 move)
     {
-        flipDirection = new Vector3(move.x, 0, move.y);
-
-        transform.rotation = Quaternion.LookRotation(flipDirection );
+        //flipDirection = new Vector3(move.x, 0, move.y);
+        //transform.rotation = Quaternion.LookRotation(flipDirection );
     }
     //右手摇杆接触结束
     void OnRightJoyStickEnd()
