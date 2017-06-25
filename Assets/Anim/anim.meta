@@ -1,6 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: a99678ad57a9f894890a1f0d7f9309e7
+timeCreated: 1498202781
+=======
+<<<<<<< HEAD
+guid: 08af39277f2b6fe4d97be922ea961c0c
+timeCreated: 1498203030
+>>>>>>> XvWenJun
+=======
 guid: 30f1db16cec51f64491615dfc16f1107
 timeCreated: 1498203796
+>>>>>>> master
 licenseType: Free
 DefaultImporter:
   userData: 
