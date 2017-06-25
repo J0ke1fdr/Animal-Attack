@@ -35,12 +35,12 @@ public class MenuButtonScript : MonoBehaviour {
 
     private void StartNewGame()
     {
-       // SceneManager.LoadScene();
+        SceneManager.LoadScene(1);
     }
 
     private void StarGameWithOthers()
     {
-      //  SceneManager.LoadScene();
+        SceneManager.LoadScene(2);
     }
 
     private void Setting()
