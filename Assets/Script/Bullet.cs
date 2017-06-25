@@ -19,7 +19,8 @@ public class Bullet : MonoBehaviour {
     }
     void OnCollisionEnter(Collision coll)
     {
-        //coll.gameObject.SendMessage("ApplyDamage", 34);
+        if(coll.gameObject.tag == "Enemy")
+            coll.gameObject.SendMessage("ApplyDamage", 34);
         //GameObject obj = (GameObject)Instantiate(blood, transform.position + transform.up * 0.3f, transform.rotation);
         Destroy(gameObject);
     }
