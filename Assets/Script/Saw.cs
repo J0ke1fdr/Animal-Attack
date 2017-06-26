@@ -48,7 +48,8 @@ public class Saw : MonoBehaviour {
             {
                 timeRecord = Time.time;
 
-                Debug.Log("ATK: " + basicATK);
+                //Debug.Log("ATK: " + basicATK);
+                col.gameObject.SendMessage("ApplyDamage", basicATK);
             }
         }
     }

@@ -91,7 +91,8 @@ public class Axe : MonoBehaviour {
     {
         if(col.tag == "Enemy" && axeAttack)
         {
-            Debug.Log("ATK: " + actualATK);
+            //Debug.Log("ATK: " + actualATK);
+            col.gameObject.SendMessage("ApplyDamage", actualATK);
         }
     }
 
