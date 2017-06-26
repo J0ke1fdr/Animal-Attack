@@ -20,7 +20,7 @@ public class Bottle : MonoBehaviour {
         else
         {
             Destroy(gameObject);
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 20; i++)
             {
                 /*GameObject obj = (GameObject)Instantiate(blood, transform.position,
                        Quaternion.EulerAngles(20f, Random.Range(-5, 5), Random.Range(-5, 5)));*/
