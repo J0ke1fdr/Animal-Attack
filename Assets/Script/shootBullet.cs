@@ -5,7 +5,8 @@ public class shootBullet : MonoBehaviour {
 
     public GameObject bullet;
     public GameObject shotgun_bullet;
-    public playerStatus player;
+    public WeaponManager weaponManager;
+    //public playerStatus player;
     //private man Man;
     private float currentfiretime;
     private bool wantfire = false;
@@ -20,7 +21,7 @@ public class shootBullet : MonoBehaviour {
     {
         //fire = GetComponent<AudioSource>();
     }
-
+    /*
     void Update()
     {
         if (!playercontrol.CheckAttack())
@@ -31,12 +32,14 @@ public class shootBullet : MonoBehaviour {
         {
             wantfire = true;
         }
+        
         switch (player.equip)
         {
             case 0: firerote = 0.5f; break;
             case 1: firerote = 0.2f; break;
             case 2: firerote = 0.6f; break;
         }
+        
         currentfiretime += Time.deltaTime;
         if (currentfiretime >= firerote && wantfire)
         {
@@ -44,7 +47,10 @@ public class shootBullet : MonoBehaviour {
             shootbullets();
             wantfire = false;
         }
+        
     }
+    */
+    /*
     void shootbullets()
     {
         if (player.equip == 0)
@@ -60,9 +66,10 @@ public class shootBullet : MonoBehaviour {
         }
         else if (player.equip == 2)
         {
-            /*fire.Stop();
-            fire.PlayOneShot(shotgun_audio, 0.15f);*/
-            player.weapon_list[2]--;
+            //fire.Stop();
+            //fire.PlayOneShot(shotgun_audio, 0.15f);
+
+             player.weapon_list[2]--;
             GameObject obj = (GameObject)Instantiate(shotgun_bullet, transform.position, transform.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.2f, 0));
             GameObject obj2 = (GameObject)Instantiate(shotgun_bullet, transform.position, transform.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) - 0.2f, 0));
             GameObject obj3 = (GameObject)Instantiate(shotgun_bullet, transform.position, transform.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.15f, 0));
@@ -85,4 +92,6 @@ public class shootBullet : MonoBehaviour {
             while (player.weapon_list[player.equip] <= 0);
         }
     }
+    */
+    
 }

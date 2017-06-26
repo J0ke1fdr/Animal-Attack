@@ -4,43 +4,50 @@ using System.Collections;
 public class WeaponManager : MonoBehaviour {
 
     public Transform handPos;                   //持武器的手的位置
-    public PlayerControl playerControl;
+    //public GameObject player;
+    //public PlayerControl playerControl;
     public GameObject[] weapons;
 
-    private GameObject inUseWeapon;
-    private int inUseWeaponIndex = 0;
+    private bool[] weaponHoldingState;          //各武器持有状态,true表示拥有该武器
+    private GameObject inUseWeapon;             //当前使用的武器
+    private int inUseWeaponIndex = 0;           //当前使用的武器编号
     private float timeRecord;
 
 	void Start ()
     {
-        //playerControl = GameObject.Find("Player").GetComponent<PlayerControl>();
         //初始武器
         inUseWeapon = (GameObject)Instantiate(weapons[0], handPos.position, handPos.rotation);
-        inUseWeapon.transform.parent = this.transform;
+        inUseWeapon.transform.parent = handPos.transform;
 
+        initWeaponHoldingState();
         timeRecord = Time.time;
     }
 
-    void Update()
+    /// <summary>
+    /// 初始化各武器持有状态
+    /// </summary>
+    private void initWeaponHoldingState()
     {
-        if(playerControl.CheckAttack())         //test//应该改成判断切换武器按钮是否按下
+        weaponHoldingState = new bool[weapons.Length];
+
+        weaponHoldingState[0] = true;
+        for (int i = 1; i < weaponHoldingState.Length; i++)
         {
-            if (Time.time > timeRecord + 0.2f)
-            {
-                timeRecord = Time.time;
-                changeWeapon();
-            }
+            weaponHoldingState[i] = true;
         }
-        
     }
+
     /// <summary>
     /// 切换武器
     /// </summary>
     public void changeWeapon()
     {
-        inUseWeaponIndex++;
-        if(inUseWeaponIndex >= weapons.Length)
-            inUseWeaponIndex = 0;
+        do
+        {
+            if (++inUseWeaponIndex >= weapons.Length)
+                inUseWeaponIndex = 0;
+        }
+        while (!weaponHoldingState[inUseWeaponIndex]);
 
         changeWeaponByIndex(inUseWeaponIndex);
     }
@@ -55,9 +62,32 @@ public class WeaponManager : MonoBehaviour {
         {
             Destroy(inUseWeapon);
             inUseWeapon = (GameObject)Instantiate(weapons[index], handPos.position, handPos.rotation);
-            inUseWeapon.transform.parent = this.transform;
-            //inUseWeapon.transform.localPosition = Vector3.zero;
-            Debug.Log(inUseWeapon.transform.localPosition);
+            inUseWeapon.transform.parent = handPos.transform;
+            
+            //Debug.Log(inUseWeapon.transform.localPosition);
         }
+    }
+    /// <summary>
+    /// 武器损坏
+    /// </summary>
+    public void WeaponBreak()
+    {
+        weaponHoldingState[inUseWeaponIndex] = false;
+        changeWeapon();
+    }
+
+    /// <summary>
+    /// 按下按钮事件
+    /// </summary>
+    public void OnChangeButtonClick()
+    {
+        Debug.Log("change weapon");
+        
+        if (Time.time > timeRecord + 0.2f)
+        {
+            timeRecord = Time.time;
+            changeWeapon();
+        }
+        
     }
 }

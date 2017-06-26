@@ -3,23 +3,25 @@ using System.Collections;
 
 public class playerStatus : MonoBehaviour {
     private int health;
-    public int[] weapon_list = { 1, 0, 0 };
-    public int equip;
+    //public int[] weapon_list = { 1, 0, 0 };
+    //public int equip;
     //public AudioClip die_audio;
     //public AudioClip hurt_audio;
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         health = 100;
-        equip = 1;
+        //equip = 1;
         /* equip list:
          * pistol  0
          * rifle   1
          * shotgun 2
          */
-        weapon_list[1] = 100;
-        weapon_list[2] = 100;
+        //weapon_list[1] = 100;
+        //weapon_list[2] = 100;
     }
 
+    /*
     // Update is called once per frame
     void Update()
     {
@@ -41,4 +43,5 @@ public class playerStatus : MonoBehaviour {
             while (weapon_list[equip] <= 0);
         }
     }
+    */
 }
