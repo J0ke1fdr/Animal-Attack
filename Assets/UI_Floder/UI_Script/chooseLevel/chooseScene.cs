@@ -1,14 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class chooseScene : MonoBehaviour {
 
+    private Text choosedScene;
+
+    private void Start()
+    {
+        choosedScene = GameObject.Find("choosedScene").GetComponent<Text>();
+        choosedScene.text = "Level1";
+    }
+
     public void onChooseClick()
     {
-        if(gameObject.name == "Level1")
+        choosedScene.text = gameObject.name;
+        if (gameObject.name == "Level1")
         {
             choosedPlayerIndex.SceneIndex = "1";
+            
         }
         else if(gameObject.name == "Level2")
         {
