@@ -63,15 +63,6 @@ public class shootBullet : MonoBehaviour {
             /*fire.Stop();
             fire.PlayOneShot(shotgun_audio, 0.15f);*/
             player.weapon_list[2]--;
-            /*GameObject obj = (GameObject)Instantiate(shotgun_bullet, transform.position, Quaternion.EulerAngles(0, 0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.2f));
-            GameObject obj2 = (GameObject)Instantiate(shotgun_bullet, transform.position, Quaternion.EulerAngles(0, 0, -Mathf.Atan2(transform.up.x, transform.up.y) - 0.2f));
-            GameObject obj3 = (GameObject)Instantiate(shotgun_bullet, transform.position, Quaternion.EulerAngles(0, 0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.15f));
-            GameObject obj4 = (GameObject)Instantiate(shotgun_bullet, transform.position, Quaternion.EulerAngles(0, 0, -Mathf.Atan2(transform.up.x, transform.up.y) - 0.15f));
-            GameObject obj5 = (GameObject)Instantiate(shotgun_bullet, transform.position, Quaternion.EulerAngles(0, 0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.1f));
-            GameObject obj6 = (GameObject)Instantiate(shotgun_bullet, transform.position, Quaternion.EulerAngles(0, 0, -Mathf.Atan2(transform.up.x, transform.up.y) - 0.1f));
-            GameObject obj7 = (GameObject)Instantiate(shotgun_bullet, transform.position, Quaternion.EulerAngles(0, 0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.05f));
-            GameObject obj8 = (GameObject)Instantiate(shotgun_bullet, transform.position, Quaternion.EulerAngles(0, 0, -Mathf.Atan2(transform.up.x, transform.up.y) - 0.05f));
-            GameObject obj9 = (GameObject)Instantiate(shotgun_bullet, transform.position, Quaternion.EulerAngles(0, 0, -Mathf.Atan2(transform.up.x, transform.up.y)));*/
             GameObject obj = (GameObject)Instantiate(shotgun_bullet, transform.position, transform.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.2f, 0));
             GameObject obj2 = (GameObject)Instantiate(shotgun_bullet, transform.position, transform.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) - 0.2f, 0));
             GameObject obj3 = (GameObject)Instantiate(shotgun_bullet, transform.position, transform.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.15f, 0));
