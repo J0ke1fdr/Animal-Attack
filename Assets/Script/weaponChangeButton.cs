@@ -3,10 +3,12 @@ using System.Collections;
 
 public class weaponChangeButton : MonoBehaviour {
 
-    public WeaponManager weaponManager;
+    //public WeaponManager weaponManager;
+    public PlayerStatus playerStatus;
 
 	public void OnClick()
     {
-        weaponManager.SendMessage("OnChangeButtonClick");
+        //weaponManager.SendMessage("OnChangeButtonClick");
+        playerStatus.SendMessage("OnChangeButtonClick");
     }
 }

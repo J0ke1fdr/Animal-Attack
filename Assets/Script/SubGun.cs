@@ -9,7 +9,8 @@ public class SubGun : MonoBehaviour {
     public int bombLoad = 100;                              //载弹量
 
     private PlayerControl playerControl;
-    private WeaponManager weaponManager;
+    private PlayerStatus playerStatus;
+    //private WeaponManager weaponManager;
     private float currentfiretime;
     private bool wantfire = false;
     
@@ -18,7 +19,8 @@ public class SubGun : MonoBehaviour {
     {
         GameObject player = GameObject.Find("Player");
         playerControl = player.GetComponent<PlayerControl>();
-        weaponManager = player.GetComponent<WeaponManager>();
+        playerStatus = player.GetComponent<PlayerStatus>();
+        //weaponManager = player.GetComponent<WeaponManager>();
 
     }
 	
@@ -51,7 +53,8 @@ public class SubGun : MonoBehaviour {
         }
         if(bombLoad <= 0)
         {
-            weaponManager.WeaponBreak();
+            //weaponManager.WeaponBreak();
+            playerStatus.WeaponBreak();
         }
 
 

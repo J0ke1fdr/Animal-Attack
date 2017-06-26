@@ -3,23 +3,21 @@ using System.Collections;
 
 public class WeaponManager : MonoBehaviour {
 
-    public Transform handPos;                   //持武器的手的位置
-    //public GameObject player;
-    //public PlayerControl playerControl;
-    public GameObject[] weapons;
+    public Transform handPos;                   //持武器的手的位置   
+    public GameObject[] weapons;                //存放各武器的预制体
 
     private bool[] weaponHoldingState;          //各武器持有状态,true表示拥有该武器
     private GameObject inUseWeapon;             //当前使用的武器
     private int inUseWeaponIndex = 0;           //当前使用的武器编号
+
+    private int health;
     private float timeRecord;
 
-	void Start ()
+    void Start()
     {
-        //初始武器
-        inUseWeapon = (GameObject)Instantiate(weapons[0], handPos.position, handPos.rotation);
-        inUseWeapon.transform.parent = handPos.transform;
+        health = 100;
 
-        initWeaponHoldingState();
+        initWeaponHoldingState();           //初始化武器持有状态
         timeRecord = Time.time;
     }
 
@@ -30,7 +28,11 @@ public class WeaponManager : MonoBehaviour {
     {
         weaponHoldingState = new bool[weapons.Length];
 
+        //默认编号为0的武器为起始武器并实例化
         weaponHoldingState[0] = true;
+        inUseWeapon = (GameObject)Instantiate(weapons[0], handPos.position, handPos.rotation);
+        inUseWeapon.transform.parent = handPos.transform;
+
         for (int i = 1; i < weaponHoldingState.Length; i++)
         {
             weaponHoldingState[i] = true;
@@ -58,12 +60,12 @@ public class WeaponManager : MonoBehaviour {
     /// <param name="index">武器编号</param>
     public void changeWeaponByIndex(int index)
     {
-        if(index >= 0 && index < weapons.Length)
+        if (index >= 0 && index < weapons.Length)
         {
             Destroy(inUseWeapon);
             inUseWeapon = (GameObject)Instantiate(weapons[index], handPos.position, handPos.rotation);
             inUseWeapon.transform.parent = handPos.transform;
-            
+
             //Debug.Log(inUseWeapon.transform.localPosition);
         }
     }
@@ -82,12 +84,12 @@ public class WeaponManager : MonoBehaviour {
     public void OnChangeButtonClick()
     {
         Debug.Log("change weapon");
-        
+
         if (Time.time > timeRecord + 0.2f)
         {
             timeRecord = Time.time;
             changeWeapon();
         }
-        
+
     }
 }

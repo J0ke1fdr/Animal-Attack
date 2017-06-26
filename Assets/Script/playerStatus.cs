@@ -1,47 +1,95 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class playerStatus : MonoBehaviour {
+public class PlayerStatus : MonoBehaviour {
+
+    public Transform handPos;                   //持武器的手的位置   
+    public GameObject[] weapons;                //存放各武器的预制体
+
+    private bool[] weaponHoldingState;          //各武器持有状态,true表示拥有该武器
+    private GameObject inUseWeapon;             //当前使用的武器
+    private int inUseWeaponIndex = 0;           //当前使用的武器编号
+
     private int health;
-    //public int[] weapon_list = { 1, 0, 0 };
-    //public int equip;
-    //public AudioClip die_audio;
-    //public AudioClip hurt_audio;
-    // Use this for initialization
-    void Start ()
+    private float timeRecord;
+
+    void Start()
     {
         health = 100;
-        //equip = 1;
-        /* equip list:
-         * pistol  0
-         * rifle   1
-         * shotgun 2
-         */
-        //weapon_list[1] = 100;
-        //weapon_list[2] = 100;
+
+        initWeaponHoldingState();           //初始化武器持有状态
+        timeRecord = Time.time;
     }
 
-    /*
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// 初始化各武器持有状态
+    /// </summary>
+    private void initWeaponHoldingState()
     {
-        choice_equip();
-    }
+        weaponHoldingState = new bool[weapons.Length];
 
-    void choice_equip()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
+        //默认编号为0的武器为起始武器并实例化
+        weaponHoldingState[0] = true;
+        inUseWeapon = (GameObject)Instantiate(weapons[0], handPos.position, handPos.rotation);
+        inUseWeapon.transform.parent = handPos.transform;
+
+        for (int i = 1; i < weaponHoldingState.Length; i++)
         {
-            //print(equip);
-            do
-            {
-                if (++equip == weapon_list.Length)
-                {
-                    equip = 0;
-                }
-            }
-            while (weapon_list[equip] <= 0);
+            weaponHoldingState[i] = true;
         }
     }
-    */
+
+    /// <summary>
+    /// 切换武器
+    /// </summary>
+    public void changeWeapon()
+    {
+        do
+        {
+            if (++inUseWeaponIndex >= weapons.Length)
+                inUseWeaponIndex = 0;
+        }
+        while (!weaponHoldingState[inUseWeaponIndex]);
+
+        changeWeaponByIndex(inUseWeaponIndex);
+    }
+
+    /// <summary>
+    /// 根据武器编号切换到对应武器
+    /// </summary>
+    /// <param name="index">武器编号</param>
+    public void changeWeaponByIndex(int index)
+    {
+        if (index >= 0 && index < weapons.Length)
+        {
+            Destroy(inUseWeapon);
+            inUseWeapon = (GameObject)Instantiate(weapons[index], handPos.position, handPos.rotation);
+            inUseWeapon.transform.parent = handPos.transform;
+
+            //Debug.Log(inUseWeapon.transform.localPosition);
+        }
+    }
+    /// <summary>
+    /// 武器损坏
+    /// </summary>
+    public void WeaponBreak()
+    {
+        weaponHoldingState[inUseWeaponIndex] = false;
+        changeWeapon();
+    }
+
+    /// <summary>
+    /// 按下按钮事件
+    /// </summary>
+    public void OnChangeButtonClick()
+    {
+        Debug.Log("change weapon");
+
+        if (Time.time > timeRecord + 0.2f)
+        {
+            timeRecord = Time.time;
+            changeWeapon();
+        }
+
+    }
 }
