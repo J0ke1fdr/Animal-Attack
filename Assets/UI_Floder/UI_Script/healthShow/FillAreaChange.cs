@@ -15,7 +15,7 @@ public class FillAreaChange : MonoBehaviour {
     public int maxHealthValue = 100;
  //   public int maxLifeValue = 5;
 
-    private Text healthTextShow;
+    public Text healthTextShow;
 //    private Text lifeTextShow;
 	// Use this for initialization
 	void Start () {
