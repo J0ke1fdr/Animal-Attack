@@ -7,12 +7,13 @@ public class blood : MonoBehaviour {
 	void Start () {
 
         //GetComponent<Rigidbody>().velocity = transform.forward * 100;
-        GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-8, 8), Random.Range(0, 40), Random.Range(-8, 8));
+        GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-12, 12), Random.Range(0, 40), Random.Range(-12, 12));
+        
     }
 
     // Update is called once per frame
     void Update () {
-        GetComponent<Rigidbody>().AddForce(new Vector3(0, -20, 0));
+        GetComponent<Rigidbody>().AddForce(new Vector3(0, -40, 0));
 
     }
 }

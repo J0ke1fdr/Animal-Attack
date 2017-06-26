@@ -39,7 +39,6 @@ public class findEnemy : MonoBehaviour {
             if(other.tag == "Player")
             {
                 currentEnemy = other.gameObject;
-                Debug.Log("find enemy");
             }
             
         }
