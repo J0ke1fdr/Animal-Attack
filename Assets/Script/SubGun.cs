@@ -9,13 +9,17 @@ public class SubGun : MonoBehaviour {
     public int bombLoad = 100;                              //载弹量
 
     private PlayerControl playerControl;
+    private WeaponManager weaponManager;
     private float currentfiretime;
     private bool wantfire = false;
     
     
     void Start ()
     {
-        playerControl = GameObject.Find("Player").GetComponent<PlayerControl>();
+        GameObject player = GameObject.Find("Player");
+        playerControl = player.GetComponent<PlayerControl>();
+        weaponManager = player.GetComponent<WeaponManager>();
+
     }
 	
 	void Update ()
@@ -47,7 +51,7 @@ public class SubGun : MonoBehaviour {
         }
         if(bombLoad <= 0)
         {
-            GameObject.Find("UIControl/UI/weaponChangeButton").GetComponent<WeaponManager>().WeaponBreak();
+            weaponManager.WeaponBreak();
         }
 
 
