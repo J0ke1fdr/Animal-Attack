@@ -9,6 +9,8 @@ public class PlayerControl : MonoBehaviour {
     public float speed = 0.07f;                   
 
     private CharacterController controller;
+    private Animator anim;
+    private AnimatorStateInfo stateInfo;
     private Vector3 moveDirection;
     private Vector3 flipDirection;
     private bool moving = false;
@@ -25,14 +27,29 @@ public class PlayerControl : MonoBehaviour {
         rightJoyStick.OnJoyStickTouchEnd += OnRightJoyStickEnd;
 
         controller = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
     }
 		
 	void Update ()
-    {        
-        if(moving)
+    {
+        stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+
+        if (moving)
         {
             controller.Move(moveDirection * speed);
         }
+        if(stateInfo.IsName("Base Layer.player_idle") && moving)
+        {
+            anim.SetBool("walk", true);
+            anim.SetBool("idle", false);
+        }
+        if(stateInfo.IsName("Base Layer.player_walk") && !moving)
+        {
+            anim.SetBool("idle", true);
+            anim.SetBool("walk", false);
+        }
+            
+
     }
     //左手摇杆接触开始
     void OnLeftJoyStickBegin(Vector2 move)
