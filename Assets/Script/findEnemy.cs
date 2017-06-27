@@ -50,6 +50,7 @@ public class findEnemy : MonoBehaviour {
         health -= damage;
         if (health <= 0)
         {
+            Debug.Log("boom");
             GameObject obj = (GameObject)Instantiate(boom, transform.position, transform.rotation);
             Destroy(gameObject);
         }
