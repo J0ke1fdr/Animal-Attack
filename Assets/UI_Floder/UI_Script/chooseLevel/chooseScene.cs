@@ -18,14 +18,13 @@ public class chooseScene : MonoBehaviour {
         choosedScene.text = gameObject.name;
         if (gameObject.name == "Level1")
         {
-            choosedPlayerIndex.SceneIndex = "1";
-            
+            choosedPlayerIndex.SceneIndex = 0;          
         }
         else if(gameObject.name == "Level2")
         {
-            choosedPlayerIndex.SceneIndex = "2";
+            choosedPlayerIndex.SceneIndex = 1;
         }
-        Debug.Log(gameObject.name);
+        //Debug.Log(gameObject.name);
     }
 
    
