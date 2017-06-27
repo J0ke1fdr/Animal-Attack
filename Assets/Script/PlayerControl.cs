@@ -48,8 +48,26 @@ public class PlayerControl : MonoBehaviour {
             anim.SetBool("idle", true);
             anim.SetBool("walk", false);
         }
-            
+#if UNITY_EDITOR
 
+        if (Input.GetKey(KeyCode.W))
+        {
+            controller.Move(Vector3.forward);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            controller.Move(Vector3.back);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            controller.Move(Vector3.left);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            controller.Move(Vector3.right);
+        }
+
+#endif
     }
     //左手摇杆接触开始
     void OnLeftJoyStickBegin(Vector2 move)
