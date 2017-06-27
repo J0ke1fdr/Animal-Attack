@@ -3,20 +3,20 @@ using System.Collections;
 
 public class Barrel : MonoBehaviour
 {
-    public float health = 100f;
+    public float health = 300f;
 
     public GameObject specialEffect;
 
-    private void OnCollisionEnter(Collision collision)
+    public void ApplyDamage(float damage)
     {
-        health -= 10;
+        health -= damage;
         if (health <= 0f)
             UpdateStatus();
     }
 
     private void UpdateStatus()
     {
-        GameObject effect = Instantiate(specialEffect, transform.position, Quaternion.identity) as GameObject;
+        // GameObject effect = Instantiate(specialEffect, transform.position, Quaternion.identity) as GameObject;
         Destroy(gameObject);
     }
 }
