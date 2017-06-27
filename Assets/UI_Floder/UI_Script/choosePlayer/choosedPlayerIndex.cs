@@ -4,8 +4,8 @@ using System;
 
 public class choosedPlayerIndex : MonoBehaviour {
 
-    public static String choosedIndex ="1";
-    public static String SceneIndex = "1";
+    public static int choosedIndex =0;
+    public static int SceneIndex = 1;
     
     
 }
