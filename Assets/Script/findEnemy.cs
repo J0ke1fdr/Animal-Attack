@@ -7,6 +7,7 @@ public class findEnemy : MonoBehaviour {
     private CharacterController controller;
     private int health;
     public GameObject boom;
+    private bool die = false;
     // Use this for initialization
     void Start () {
         controller = GetComponent<CharacterController>();
@@ -48,8 +49,9 @@ public class findEnemy : MonoBehaviour {
     void ApplyDamage(int damage)
     {
         health -= damage;
-        if (health <= 0)
+        if (health <= 0 && die == false)
         {
+            die = true;
             GameObject obj = (GameObject)Instantiate(boom, transform.position, transform.rotation);
             Destroy(gameObject);
         }

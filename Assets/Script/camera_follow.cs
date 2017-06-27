@@ -43,7 +43,7 @@ public class camera_follow : MonoBehaviour {
 
         if (CheckzMargin())
             //targetZ = Mathf.Lerp(transform.position.z, player.position.z, zSmooth);
-            targetZ = Mathf.Lerp(transform.position.z, player.position.z - 100, zSmooth);
+            targetZ = Mathf.Lerp(transform.position.z, player.position.z -70, zSmooth);
 
         targetX = Mathf.Clamp(targetX, minXAndZ.x, maxXAndZ.x);
         targetZ = Mathf.Clamp(targetZ, minXAndZ.z, maxXAndZ.z);
