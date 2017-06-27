@@ -31,11 +31,12 @@ public class connectChoosePlayer : MonoBehaviour {
         leftPlayerIdText = GameObject.Find("leftChoosedPlayer/leftPlayerIdText").GetComponent<Text>();
         rightPlayerIdText = GameObject.Find("rightChoosedPlayer/rightPlayerIdText").GetComponent<Text>();
 
+        leftPlayerName.text = "角色名称";
+        rightPlayerName.text = "角色名称";
+
         errorText = GameObject.Find("ErrorText").GetComponent<Text>();
-        // errorText.gameObject.SetActive(false);
         errorText.text = "请选择联机方式";
 
-        //   playerName.text = "角色" + gameObject.name;
     }
     public void onChooseClick()
     {
