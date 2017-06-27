@@ -92,9 +92,4 @@ public class PlayerStatus : MonoBehaviour {
         }
 
     }
-
-    void ApplyDamage(int damage)
-    {
-        health -= damage;
-    }
 }

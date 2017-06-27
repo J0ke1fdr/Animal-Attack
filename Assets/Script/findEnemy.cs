@@ -55,5 +55,6 @@ public class findEnemy : MonoBehaviour {
             GameObject obj = (GameObject)Instantiate(boom, transform.position, transform.rotation);
             Destroy(gameObject);
         }
+            
     }
 }
