@@ -10,7 +10,8 @@ public class Boom : MonoBehaviour {
             /*GameObject obj = (GameObject)Instantiate(blood, transform.position,
                    Quaternion.EulerAngles(20f, Random.Range(-5, 5), Random.Range(-5, 5)));*/
             GameObject obj = (GameObject)Instantiate(blood, transform.position + new Vector3(0, 15, 0), transform.rotation);
-        }            
+        }
+        Destroy(gameObject);
     }
 	
 	// Update is called once per frame
