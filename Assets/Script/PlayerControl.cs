@@ -27,7 +27,7 @@ public class PlayerControl : MonoBehaviour {
         rightJoyStick.OnJoyStickTouchEnd += OnRightJoyStickEnd;
 
         controller = GetComponent<CharacterController>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
     }
 		
 	void Update ()
