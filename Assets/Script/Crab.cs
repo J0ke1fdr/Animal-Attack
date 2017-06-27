@@ -10,6 +10,7 @@ public class Crab : MonoBehaviour {
     public GameObject bottle;
     private float currentfiretime;
     public Transform bottle_trans;
+    private bool die = false;
     // Use this for initialization
     void Start()
     {
@@ -72,8 +73,9 @@ public class Crab : MonoBehaviour {
     void ApplyDamage(int damage)
     {
         health -= damage;
-        if (health <= 0)
+        if (health <= 0 && die == false)
         {
+            die = true;
             GameObject obj = (GameObject)Instantiate(boom, transform.position, transform.rotation);
             Destroy(gameObject);
         }
