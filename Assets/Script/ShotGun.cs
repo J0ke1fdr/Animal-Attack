@@ -9,7 +9,7 @@ public class ShotGun : MonoBehaviour {
     public int bombLoad = 40;                              //载弹量
 
     private PlayerControl playerControl;
-    private PlayerStatus playerStatus;
+    private PlayerStatusfixed playerStatus;
     private float currentfiretime;
     private bool wantfire = false;
 
@@ -17,7 +17,7 @@ public class ShotGun : MonoBehaviour {
     {
         GameObject player = GameObject.Find("Player");
         playerControl = player.GetComponent<PlayerControl>();
-        playerStatus = player.GetComponent<PlayerStatus>();
+        playerStatus = player.GetComponent<PlayerStatusfixed>();
     }
 	
 	void Update ()
