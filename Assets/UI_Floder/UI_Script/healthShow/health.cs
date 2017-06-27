@@ -5,23 +5,29 @@ using UnityEngine.UI;
 
 public class health : MonoBehaviour {
 
-    public int maxHealth = 100;//最大血量
-    public int healthValue = 100;//当前血量
+    private int maxHealth = 100;//最大血量
+    private int healthValue = 100;//当前血量
     private Slider healthSlider;
     private RectTransform FillArea;
 
     private Text textShow;
+
+    private PlayerStatusfixed playerStatus;
 	// Use this for initialization
 	void Start () {
         healthSlider = gameObject.GetComponent<Slider>();
         healthSlider.maxValue = maxHealth;
         textShow = GameObject.Find("healthTextShow").GetComponent<Text>();
         FillArea = GameObject.Find("healthSlider/Fill Area").GetComponent<RectTransform>();
+
+        playerStatus = GameObject.Find("Player").GetComponent<PlayerStatusfixed>();
+
+        healthSlider.maxValue = maxHealth;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        healthSlider.maxValue = maxHealth;
+      
         if (healthValue > maxHealth)
         {
             healthValue = maxHealth;
@@ -30,8 +36,8 @@ public class health : MonoBehaviour {
         {
             healthValue = 0;
         }
-        
-        healthSlider.value = healthValue;
+     
+        healthSlider.value = playerStatus.GetHealth();
 
         if(healthSlider.value == 0)
         {
