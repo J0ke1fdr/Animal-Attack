@@ -44,6 +44,13 @@ public class CrowAttack : MonoBehaviour {
             anim.SetBool("walk", true);
             anim.SetBool("idle", false);
         }
+        //走动状态转空闲
+        if(stateInfo.IsName("Base Layer.crow_walk") && controller.velocity.magnitude == 0)
+        {
+            anim.SetBool("walk", false);
+            anim.SetBool("idle", true);
+        }
+
         //空闲、走动状态转攻击状态
         if( (stateInfo.IsName("Base Layer.crow_idle") || stateInfo.IsName("Base Layer.crow_walk"))  && wantAttack)
         {
