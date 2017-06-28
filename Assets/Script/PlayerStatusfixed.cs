@@ -92,4 +92,9 @@ public class PlayerStatusfixed : MonoBehaviour {
         }
 
     }
+
+    public int GetHealth()
+    {
+        return health;
+    }
 }

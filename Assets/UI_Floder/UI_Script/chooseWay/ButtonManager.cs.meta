@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ef50baec68a81be40b568a2c6fc31861
+timeCreated: 1498552448
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - creatButton: {instanceID: 0}
+  - joinInButton: {instanceID: 0}
+  - closeButton: {instanceID: 0}
+  - okButton: {instanceID: 0}
+  - roomPanel: {instanceID: 0}
+  - creatRoomName: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
