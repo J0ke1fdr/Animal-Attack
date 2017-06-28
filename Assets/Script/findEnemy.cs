@@ -4,10 +4,11 @@ using System.Collections;
 public class findEnemy : MonoBehaviour {
 
     private GameObject currentEnemy = null;
-    private CharacterController controller;
+    public CharacterController controller;
     private int health;
     public GameObject boom;
     private bool die = false;
+    private bool canWalk = true;
     // Use this for initialization
     void Start () {
         controller = GetComponent<CharacterController>();
@@ -16,7 +17,7 @@ public class findEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(currentEnemy != null)
+        if(currentEnemy != null && canWalk)
         {
             //Debug.Log(Vector3.Distance(currentEnemy.transform.position, transform.position));
             /*if (Vector3.Distance(currentEnemy.transform.position, transform.position) > 60)
@@ -54,7 +55,16 @@ public class findEnemy : MonoBehaviour {
             die = true;
             GameObject obj = (GameObject)Instantiate(boom, transform.position, transform.rotation);
             Destroy(gameObject);
-        }
-            
+        }            
     }
+
+    public void StartWalk()
+    {
+        canWalk = true;
+    }
+    public void StopWalk()
+    {
+        canWalk = false;
+    }
+
 }
