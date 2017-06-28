@@ -48,6 +48,7 @@ public class CrowAttack : MonoBehaviour {
         if(stateInfo.IsName("Base Layer.crow_walk") && controller.velocity.magnitude == 0)
         {
             anim.SetBool("walk", false);
+            anim.SetBool("attack", false);
             anim.SetBool("idle", true);
         }
 
@@ -81,7 +82,7 @@ public class CrowAttack : MonoBehaviour {
             wantAttack = true;
             if(attack && !attackInCD)
             {
-                //col.SendMessage("ApplyDamage", 34);
+                col.SendMessage("ApplyDamage", 34);
                 attackInCD = true;
 
                 Debug.Log("crow attack");

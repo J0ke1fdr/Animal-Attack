@@ -6,7 +6,7 @@ public class Bottle : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        GetComponent<Rigidbody>().velocity += transform.forward * 100 + new Vector3(0, 40, 0);
+        GetComponent<Rigidbody>().velocity += transform.forward * 10 + new Vector3(0, 8, 0);
     }
 
     // Update is called once per frame
@@ -34,6 +34,6 @@ public class Bottle : MonoBehaviour {
     private void Update()
     {
         transform.Rotate(2, 0, 0);
-        GetComponent<Rigidbody>().AddForce(new Vector3(0, -40, 0));
+        GetComponent<Rigidbody>().AddForce(new Vector3(0, -4, 0));
     }
 }
