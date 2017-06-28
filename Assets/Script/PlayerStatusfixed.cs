@@ -97,4 +97,9 @@ public class PlayerStatusfixed : MonoBehaviour {
     {
         return health;
     }
+
+    void ApplyDamage(int damage)
+    {
+        health -= damage;
+    }
 }
