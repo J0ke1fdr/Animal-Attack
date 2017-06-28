@@ -10,9 +10,9 @@ public class ButtonClick : MonoBehaviour {
     private RectTransform closeButton;
     private RectTransform okButton;
 
-    private Image roomPanel;
+    private RectTransform roomPanel;
 
-    private Image creatRoomName;
+    private RectTransform creatRoomName;
 
     private void Awake()
     {
@@ -21,33 +21,41 @@ public class ButtonClick : MonoBehaviour {
         closeButton = GameObject.Find("closeScene").GetComponent<RectTransform>();
         okButton = GameObject.Find("OK").GetComponent<RectTransform>();
 
-        roomPanel = GameObject.Find("roomPanel").GetComponent<Image>();
+        roomPanel = GameObject.Find("roomPanel").GetComponent<RectTransform>();
 
-        creatRoomName = GameObject.Find("roomName").GetComponent<Image>();
+        creatRoomName = GameObject.Find("createdRoomName").GetComponent<RectTransform>();
+
+        
     }
 
     private void Start()
     {
-        okButton.gameObject.SetActive(false);
-        roomPanel.gameObject.SetActive(false);
-        creatRoomName.gameObject.SetActive(false);
+        //okButton.gameObject.SetActive(false);
+        //roomPanel.gameObject.SetActive(false);
+        //creatRoomName.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if(creatButton.gameObject.activeSelf && joinInButton.gameObject.activeSelf)
+        {
+            okButton.gameObject.SetActive(false);
+            roomPanel.gameObject.SetActive(false);
+            creatRoomName.gameObject.SetActive(false);
+        }
     }
 
     public void onCreatRoomClick()///创建游戏
     {
         Debug.Log("creat");
-        okButton.gameObject.SetActive(true);
-        creatRoomName.gameObject.SetActive(true);
+        
 
         creatButton.gameObject.SetActive(false);
         joinInButton.gameObject.SetActive(false);
+        roomPanel.gameObject.SetActive(false);
 
-
-        //  if (!okButton.gameObject.activeSelf)
-        // {
-
-        //  }
-
+        okButton.gameObject.SetActive(true);
+        creatRoomName.gameObject.SetActive(true);     
     }
 
     public void onJoinInRoomClick()
@@ -82,7 +90,6 @@ public class ButtonClick : MonoBehaviour {
         {
             SceneManager.LoadScene(0);//加载主菜单
         }
-
     }
 
     public void onOkClick()
