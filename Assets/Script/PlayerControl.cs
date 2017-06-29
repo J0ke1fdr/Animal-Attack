@@ -52,19 +52,19 @@ public class PlayerControl : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.W))
         {
-            controller.Move(Vector3.forward);
+            controller.Move(Vector3.forward * 0.2f);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            controller.Move(Vector3.back);
+            controller.Move(Vector3.back * 0.2f);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            controller.Move(Vector3.left);
+            controller.Move(Vector3.left * 0.2f);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            controller.Move(Vector3.right);
+            controller.Move(Vector3.right * 0.2f);
         }
 
 #endif

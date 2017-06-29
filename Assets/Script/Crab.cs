@@ -31,14 +31,14 @@ public class Crab : MonoBehaviour {
             else*/
             {
                 transform.LookAt(currentEnemy.transform);
-                if (Vector3.Distance(currentEnemy.transform.position, transform.position) > 100)
+                if (Vector3.Distance(currentEnemy.transform.position, transform.position) > 8)
                 {
                     controller.Move(new Vector3(currentEnemy.transform.position.x - transform.position.x,
                                                 transform.position.y,
                                                 currentEnemy.transform.position.z - transform.position.z) * 0.005f);
                     //controller.Move((currentEnemy.transform.position - transform.position) * 0.003f);
                 }
-                else if (Vector3.Distance(currentEnemy.transform.position, transform.position) < 80)
+                else if (Vector3.Distance(currentEnemy.transform.position, transform.position) < 6)
                 {
                     controller.Move(new Vector3(transform.position.x - currentEnemy.transform.position.x,
                                                 transform.position.y,
