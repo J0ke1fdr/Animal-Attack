@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerStatus : MonoBehaviour {
+public class PlayerStatusfixed : MonoBehaviour {
 
     public Transform handPos;                   //持武器的手的位置   
     public GameObject[] weapons;                //存放各武器的预制体
@@ -91,5 +91,15 @@ public class PlayerStatus : MonoBehaviour {
             changeWeapon();
         }
 
+    }
+
+    public int GetHealth()
+    {
+        return health;
+    }
+
+    void ApplyDamage(int damage)
+    {
+        health -= damage;
     }
 }

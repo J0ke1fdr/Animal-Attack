@@ -4,7 +4,7 @@ using System.Collections;
 public class weaponChangeButton : MonoBehaviour
 {
     //public WeaponManager weaponManager;
-    public PlayerStatus playerStatus;
+    public PlayerStatusfixed playerStatus;
 
     public void OnClick()
     {
