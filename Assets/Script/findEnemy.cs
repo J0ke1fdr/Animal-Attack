@@ -9,10 +9,16 @@ public class findEnemy : MonoBehaviour {
     public GameObject boom;
     private bool die = false;
     private bool canWalk = true;
+    private float currentTime = 0;
+    private Vector3 targetPosition;
+    private float randomMoveTime;
+
     // Use this for initialization
     void Start () {
         controller = GetComponent<CharacterController>();
         health = 200;
+        targetPosition = new Vector3(0, 0, 0);
+        
     }
 	
 	// Update is called once per frame
@@ -30,19 +36,52 @@ public class findEnemy : MonoBehaviour {
                 controller.Move((currentEnemy.transform.position - transform.position) * 0.007f);
             }
         }
-            
-            
+        else
+        {
+            if (targetPosition != new Vector3(0, 0, 0))
+            {
+                currentTime += Time.deltaTime;
+                if (currentTime > randomMoveTime)
+                {
+                    currentTime = 0;
+                    targetPosition = new Vector3(0, 0, 0);
+                }
+                else
+                {
+                    
+                    controller.Move((targetPosition - transform.position) * 0.007f);
+                }
+            }
+        }
+        
+        
+
     }
+
+
 
     private void OnTriggerStay(Collider other)
     {
         if(currentEnemy == null)
         {
-            if(other.tag == "Player")
+            if (other.tag == "Player")
             {
+                targetPosition = new Vector3(0, 0, 0);
                 currentEnemy = other.gameObject;
             }
-            
+            if (other.tag == "Enemy")
+            {
+                
+                if (targetPosition == new Vector3(0, 0, 0))
+                {
+                    //Debug.Log("random move");
+                    targetPosition = transform.position + new Vector3(Random.Range(-40, 40)/10f, 0, Random.Range(-40, 40) / 10f);
+                    randomMoveTime = Random.Range(8, 25) / 10f;
+                    transform.LookAt(targetPosition);
+                }
+                    
+            }
+
         }
         
     }

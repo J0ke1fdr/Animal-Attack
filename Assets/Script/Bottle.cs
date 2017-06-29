@@ -6,7 +6,7 @@ public class Bottle : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        GetComponent<Rigidbody>().velocity += transform.forward * 10 + new Vector3(0, 8, 0);
+        GetComponent<Rigidbody>().velocity += transform.forward * 10 + new Vector3(0, 6, 0);
     }
 
     // Update is called once per frame

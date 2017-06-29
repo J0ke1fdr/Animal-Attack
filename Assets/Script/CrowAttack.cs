@@ -35,13 +35,13 @@ public class CrowAttack : MonoBehaviour {
     void Update()
     {
         stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-        
         if (stateInfo.IsName("Base Layer.crow_idle"))
             attackInCD = false;
         //空闲状态转走动
         if(stateInfo.IsName("Base Layer.crow_idle") && controller.velocity.magnitude != 0)
         {
             anim.SetBool("walk", true);
+            anim.SetBool("attack", false);
             anim.SetBool("idle", false);
         }
         //走动状态转空闲
@@ -59,7 +59,6 @@ public class CrowAttack : MonoBehaviour {
             anim.SetBool("idle", true);
             anim.SetBool("attack", true);
         }
-
         //攻击状态下
         if(stateInfo.IsName("Base Layer.crow_attack"))
         {
@@ -92,7 +91,10 @@ public class CrowAttack : MonoBehaviour {
     void OnTriggerExit(Collider col)
     {
         if (col.tag == "Player")
+        {
             wantAttack = false;
+            anim.SetBool("attack", false);
+        }
     }
     /*
 	void Update ()
