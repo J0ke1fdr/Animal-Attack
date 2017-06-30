@@ -33,9 +33,12 @@ public class creatServerItem : MonoBehaviour {
         List<ServerModel.Server> serverList = ServerModel.ServerManager.GetServerList();
         for (;i< serverList.Count;i++)
         {
-            Instantiate(ServerItemButton.gameObject, new Vector3(transform.position.x, transform.position.y - deltaY * (i + 1)), transform.rotation, transform);
-            // Debug.Log(serverList[i].Name);
-           // Debug.Log(createdButton.gameObject.name);
+            GameObject newServer = Instantiate(ServerItemButton.gameObject, new Vector3(transform.position.x, transform.position.y - deltaY * (i + 1)), transform.rotation, transform) as GameObject;
+
+
+            newServer.name = serverList[i].Name; ;
+            Debug.Log(newServer.name);
+            // Debug.Log(createdButton.gameObject.name);
         }
         //如果有新的，创建一个实例，取消时销毁
         //if (i < ServerModel.ServerManager.GetServerList().Count)

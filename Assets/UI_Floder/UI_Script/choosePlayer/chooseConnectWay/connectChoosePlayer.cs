@@ -25,13 +25,13 @@ public class connectChoosePlayer : MonoBehaviour {
 
         switch (choosePlayerButton.name)
         {
-            case "1": choosePlayerManager.leftChoosedPlayer = 0; break;
-            case "2": choosePlayerManager.leftChoosedPlayer = 1; break;
-            case "3": choosePlayerManager.leftChoosedPlayer = 2; break;
-            case "4": choosePlayerManager.leftChoosedPlayer = 3; break;
+            case "1": MenuSceneManager.choosedPlayer = 0; break;
+            case "2": MenuSceneManager.choosedPlayer = 1; break;
+            case "3": MenuSceneManager.choosedPlayer = 2; break;
+            case "4": MenuSceneManager.choosedPlayer = 3; break;
         }
         // Debug.Log("Left" + choosePlayerManager.leftChoosedPlayer);
-        choosedPlayerImage.sprite = player[choosePlayerManager.leftChoosedPlayer];
+        choosedPlayerImage.sprite = player[MenuSceneManager.choosedPlayer];
         choosedPlayerName.text = "角色" + gameObject.name;
 
     }

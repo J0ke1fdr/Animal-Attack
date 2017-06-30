@@ -14,6 +14,10 @@ public class ButtonClick : MonoBehaviour {
 
     private RectTransform creatRoomName;
 
+    /****************MeneScene**************/
+  //  private RectTransform choosePlayerScene;
+  //  private RectTransform connectScene;
+
     private void Awake()
     {
         creatButton = GameObject.Find("creatRoom").GetComponent<RectTransform>();
@@ -25,7 +29,11 @@ public class ButtonClick : MonoBehaviour {
 
         creatRoomName = GameObject.Find("createdRoomName").GetComponent<RectTransform>();
 
-        
+       // choosePlayerScene = GameObject.Find("choosePlayer").GetComponent<RectTransform>();
+      //  connectScene = GameObject.Find()
+
+
+
     }
 
     private void Start()
@@ -88,12 +96,16 @@ public class ButtonClick : MonoBehaviour {
         }
         else
         {
-            SceneManager.LoadScene(0);//加载主菜单
+            //加载主菜单
+            MenuSceneManager.connectScene.gameObject.SetActive(false);
+            MenuSceneManager.mainMenuScene.gameObject.SetActive(true);
         }
     }
 
     public void onOkClick()
     {
         Debug.Log("OK");
+        MenuSceneManager.connectScene.gameObject.SetActive(false);
+        MenuSceneManager.chooseScene.gameObject.SetActive(true);
     }
 }
