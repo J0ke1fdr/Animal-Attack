@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Axe : MonoBehaviour {
 
-    public PlayerControl playerControl;
+    
     public float attackAnimPauseTime = 0.4f;
     public float basicATK = 100f;
     public float maxATK = 300f;
@@ -18,13 +18,17 @@ public class Axe : MonoBehaviour {
     private float timeRecord;
     private Animator anim;
     private AnimatorStateInfo stateInfo;
+    private PlayerControl playerControl;
+    private PlayerStatusfixed playerStatus;
+
 
     void Start ()
     {
         anim = GetComponent<Animator>();
         //stateInfo = anim.GetCurrentAnimatorStateInfo(0);
         playerControl = GameObject.Find("Player").GetComponent<PlayerControl>();
-	}
+        playerStatus = GameObject.Find("Player").GetComponent<PlayerStatusfixed>();
+    }
 	
 	
 	void Update ()
@@ -45,7 +49,8 @@ public class Axe : MonoBehaviour {
         {
             charge = false;
             axeAttack = true;
-            CalActualATK();      
+            CalActualATK();
+            playerStatus.BulletConsume();      
               
             anim.SetBool("charge", false);
             anim.SetBool("attack", true);

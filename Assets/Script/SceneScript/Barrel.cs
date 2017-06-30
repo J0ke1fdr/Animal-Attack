@@ -4,7 +4,6 @@ using System.Collections;
 public class Barrel : MonoBehaviour
 {
     public float health = 300f;
-
     public GameObject specialEffect;
 
     public void ApplyDamage(float damage)
@@ -16,7 +15,7 @@ public class Barrel : MonoBehaviour
 
     private void UpdateStatus()
     {
-        // GameObject effect = Instantiate(specialEffect, transform.position, Quaternion.identity) as GameObject;
+        GameObject effect = Instantiate(specialEffect, transform.position, Quaternion.identity) as GameObject;
         Destroy(gameObject);
     }
 }

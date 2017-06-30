@@ -6,7 +6,7 @@ public class SubGun : MonoBehaviour {
     public GameObject subGunBullet;
     public Transform gunPoint;                              //枪口位置
     public float firerote = 0.2f;
-    public int bombLoad = 100;                              //载弹量
+    //public int bombLoad = 100;                              //载弹量
 
     private PlayerControl playerControl;
     private PlayerStatusfixed playerStatus;
@@ -46,18 +46,8 @@ public class SubGun : MonoBehaviour {
 
     public void ShootBullets()
     {
-        if(bombLoad > 0)
-        {
-            GameObject bullet = (GameObject)Instantiate(subGunBullet, gunPoint.position, gunPoint.rotation);
-            bombLoad--;
-        }
-        if(bombLoad <= 0)
-        {
-            //weaponManager.WeaponBreak();
-            playerStatus.WeaponBreak();
-        }
-
-
+        GameObject bullet = (GameObject)Instantiate(subGunBullet, gunPoint.position, gunPoint.rotation);
+        playerStatus.BulletConsume();       
     }
 
 }

@@ -3,27 +3,24 @@ using System.Collections;
 
 public class RandBox : MonoBehaviour
 {
-    public Animator anim;
+    public int maxWeaponCount = 3;
 
-    private void Start()
+    public void DestroyProp(int deadTime)
     {
-        anim = GetComponent<Animator>();
+        Destroy(gameObject, deadTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Floor")
+        if (other.gameObject.tag == "Player")
         {
-            anim.SetTrigger("OnFloor");
-        }
-        else if (collision.gameObject.tag == "Player")
-        {
-            // collision.gameObject.SendMessage("AddWeapon", 1);
+            other.gameObject.SendMessage("AddWeaponByIndex", RandWeapon());
             Destroy(gameObject);
         }
     }
 
-    private void RandWeapon()
+    private int RandWeapon()
     {
+        return Random.Range(1, maxWeaponCount + 1);
     }
 }

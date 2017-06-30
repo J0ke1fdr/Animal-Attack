@@ -6,12 +6,16 @@ public class BloodBag : MonoBehaviour
     public int minblood = 10;
     public int maxblood = 50;
 
-    private void OnCollisionEnter(Collision collision)
+    public void DestroyProp(int deadTime)
     {
-        Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.tag == "Player")
+        Destroy(gameObject, deadTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
         {
-            // collision.gameObject.SendMessage("AddBlood", randBlood());
+            other.gameObject.SendMessage("ApplyHealth", RandBlood());
             Destroy(gameObject);
         }
     }

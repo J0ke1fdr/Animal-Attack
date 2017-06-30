@@ -6,7 +6,7 @@ public class ShotGun : MonoBehaviour {
     public GameObject shotGunBullet;
     public Transform gunPoint;                              //枪口位置
     public float firerote = 0.6f;
-    public int bombLoad = 40;                              //载弹量
+    //public int bombLoad = 40;                              //载弹量
 
     private PlayerControl playerControl;
     private PlayerStatusfixed playerStatus;
@@ -42,26 +42,17 @@ public class ShotGun : MonoBehaviour {
 
     public void ShootBullets()
     {
-        if (bombLoad > 0)
-        {
-            GameObject obj = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.2f, 0));
-            GameObject obj2 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) - 0.2f, 0));
-            GameObject obj3 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.15f, 0));
-            GameObject obj4 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) - 0.15f, 0));
-            GameObject obj5 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.1f, 0));
-            GameObject obj6 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) - 0.1f, 0));
-            GameObject obj7 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.05f, 0));
-            GameObject obj8 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) - 0.05f, 0));
-            GameObject obj9 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y), 0));
+        playerStatus.BulletConsume();
 
-            bombLoad--;
-        }
-        if (bombLoad <= 0)
-        {
-            playerStatus.WeaponBreak();
-        }
-
-
+        GameObject obj = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.2f, 0));
+        GameObject obj2 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) - 0.2f, 0));
+        GameObject obj3 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.15f, 0));
+        GameObject obj4 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) - 0.15f, 0));
+        GameObject obj5 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.1f, 0));
+        GameObject obj6 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) - 0.1f, 0));
+        GameObject obj7 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.05f, 0));
+        GameObject obj8 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) - 0.05f, 0));
+        GameObject obj9 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y), 0));
     }
 
 

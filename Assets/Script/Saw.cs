@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Saw : MonoBehaviour {
 
-    public PlayerControl playerControl;
+    
 
     public float basicATK = 10f;
     public float intervalAttackTime = 0.1f;
@@ -12,11 +12,15 @@ public class Saw : MonoBehaviour {
     private bool attack = false;
     private Animator anim;
     private AnimatorStateInfo stateInfo;
+    private PlayerControl playerControl;
+    private PlayerStatusfixed playerStatus;
 
     void Start ()
     {
         anim = GetComponent<Animator>();
         playerControl = GameObject.Find("Player").GetComponent<PlayerControl>();
+        playerStatus = GameObject.Find("Player").GetComponent<PlayerStatusfixed>();
+
         timeRecord = Time.time;
     }
 	
@@ -48,6 +52,7 @@ public class Saw : MonoBehaviour {
             {
                 timeRecord = Time.time;
 
+                playerStatus.BulletConsume();
                 //Debug.Log("ATK: " + basicATK);
                 col.gameObject.SendMessage("ApplyDamage", basicATK);
             }

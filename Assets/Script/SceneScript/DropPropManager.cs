@@ -6,8 +6,7 @@ public class DropPropManager : MonoBehaviour
     //间隔时间
     public float timeSpan = 60;
 
-    //最大生成数
-    public int maxcount = 5;
+    public int propDeadTime = 30;
 
     //武器和血包的生成概率比例：武器/血包
     public int probabilityScale = 5;
@@ -16,9 +15,7 @@ public class DropPropManager : MonoBehaviour
     public GameObject randBox;
     private float xWidth;
     private float zWidth;
-    private int realCount;
     private float lastInstantiateTime = 0;
-    private int currentCount = 0;
 
     private enum InstantiateType
     {
@@ -28,27 +25,27 @@ public class DropPropManager : MonoBehaviour
 
     private void Start()
     {
-        realCount = Random.Range(0, maxcount + 1);
         xWidth = GetComponent<Collider>().bounds.size.x / 2;
         zWidth = GetComponent<Collider>().bounds.size.z / 2;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void Update()
     {
-        if (other.tag == "Player" && Time.time - lastInstantiateTime >= timeSpan && currentCount < realCount)
+        if (Time.time - lastInstantiateTime >= timeSpan)
         {
-            currentCount++;
             lastInstantiateTime = Time.time;
             Vector3 instantiatePos = InstantiatePosition();
             if (RandInstantiateType() == InstantiateType.BloodBag)
             {
                 GameObject bloodbag = Instantiate(bloodBag, transform) as GameObject;
                 bloodbag.transform.position = instantiatePos;
+                bloodbag.GetComponent<BloodBag>().DestroyProp(propDeadTime);
             }
             else
             {
                 GameObject randbox = Instantiate(randBox, transform) as GameObject;
                 randbox.transform.position = instantiatePos;
+                randbox.GetComponent<RandBox>().DestroyProp(propDeadTime);
             }
         }
     }

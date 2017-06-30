@@ -16,6 +16,8 @@ public class PlayerControl : MonoBehaviour {
     private bool moving = false;
     private bool attack = false;
 
+    private PlayerStatusfixed  playerstatus;
+
 	void Start ()
     {
         leftJoyStick.OnJoyStickTouchBegin += OnLeftJoyStickBegin;
@@ -28,6 +30,7 @@ public class PlayerControl : MonoBehaviour {
 
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
+        playerstatus = GetComponent<PlayerStatusfixed>();
     }
 		
 	void Update ()
@@ -93,6 +96,8 @@ public class PlayerControl : MonoBehaviour {
     {
         //开火
         attack = true;
+
+        playerstatus.BulletConsume();           //消耗当前武器的弹药
     }
     //右手摇杆移动
     void OnRightJoyStickMove(Vector2 move)
