@@ -1,18 +1,38 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
-public class Pause : MonoBehaviour {
+public class Pause : MonoBehaviour
+{
 
+    private RectTransform pausePanel;
 
-	public void onPauseClick()
+    private void Awake()
     {
-        if(Time.timeScale == 0)
-        {
-            Time.timeScale = 1;
-        }
-        else if(Time.timeScale == 1)
-        {
-            Time.timeScale = 0;
-        }
+        pausePanel = GameObject.Find("pausePanel").GetComponent<RectTransform>();
     }
+    private void Start()
+    {
+        pausePanel.gameObject.SetActive(false);
+
+    }
+
+    public void onPauseClick()
+    {
+        Time.timeScale = 0;
+        pausePanel.gameObject.SetActive(true);
+    }
+
+    public void onPlayClick()
+    {
+        Time.timeScale = 1;
+        pausePanel.gameObject.SetActive(false);
+    }
+
+    public void onHomeClick()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+
 }
