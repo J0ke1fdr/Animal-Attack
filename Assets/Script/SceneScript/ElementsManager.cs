@@ -17,7 +17,8 @@ public class ElementsManager : MonoBehaviour
     {
         if (currentGetElementCount >= maxElementCount && !getAllElements)
         {
-            lockDoor.SetActive(false);
+            lockDoor.GetComponent<Collider>().isTrigger = true;
+
             getAllElements = true;
         }
     }
