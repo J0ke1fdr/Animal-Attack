@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LockDoor : MonoBehaviour {
+public class LockDoor : MonoBehaviour
+{
+    private Collider col;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    private void Start()
+    {
+        col = GetComponent<Collider>();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player" && col.isTrigger)
+        {
+        }
+    }
 }
