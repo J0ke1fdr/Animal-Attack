@@ -6,20 +6,18 @@ public class RadarSystem : MonoBehaviour
 {
     public float viewRadius = 20;
     public GameObject animalPrefab;
-
-    private Transform playerHelper;
-    public List<GameObject> animalList;
-    public List<GameObject> borderAnimals = new List<GameObject>();
+    public LevelManager level;
+    public Transform playerHelper;
+    private List<GameObject> animalList;
+    private List<GameObject> borderAnimals = new List<GameObject>();
     private Camera mapCamera;
     private float scale = 0.92f;
-    public Test test;
 
     private void Start()
     {
         mapCamera = GetComponentInChildren<Camera>();
         mapCamera.orthographicSize = viewRadius;
-        playerHelper = GameObject.FindGameObjectWithTag("PlayerHelper").transform;
-        animalList = test.animalList;
+        animalList = level.AnimalList;
     }
 
     private void Update()

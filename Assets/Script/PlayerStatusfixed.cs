@@ -46,9 +46,11 @@ public class PlayerStatusfixed : MonoBehaviour
         }
         //初始化各武器的弹药增加量
         weaponBulletIncrement[0] = 0;
-        weaponBulletIncrement[1] = 100;
+        weaponBulletIncrement[1] = 20;
         weaponBulletIncrement[2] = 100;
-        weaponBulletIncrement[3] = 40;
+        weaponBulletIncrement[3] = 100;
+        weaponBulletIncrement[4] = 40;
+        weaponBulletIncrement[5] = 10;
     }
 
     /// <summary>

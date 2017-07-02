@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CreateAnimal : MonoBehaviour {
 
-    private bool notUsed = true;
+    /*private bool notUsed = true;
     public GameObject crow;
     public GameObject crab;
 	// Use this for initialization
@@ -15,14 +15,14 @@ public class CreateAnimal : MonoBehaviour {
 	void Update () {
 	    
 	}
-    /*private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player" && notUsed)
         {
             notUsed = false;
             StartCoroutine(createAnimal());
         }
-    }*/
+    }
 
     IEnumerator createAnimal()
     {
@@ -35,7 +35,7 @@ public class CreateAnimal : MonoBehaviour {
             GameObject obj1 = (GameObject)Instantiate(crow, transform.position, transform.rotation);
             yield return new WaitForSeconds(3);
         }
-    }
+    }*/
 }
 
 

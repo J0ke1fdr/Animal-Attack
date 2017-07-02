@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerControl : MonoBehaviour {
-
+public class PlayerControl : MonoBehaviour
+{
     public JoyStick leftJoyStick;           //左手柄的控制脚本
     public JoyStick rightJoyStick;        //右手柄的控制脚本
 
-    public float speed = 0.07f;                   
+    public float speed = 0.07f;
 
     private CharacterController controller;
     private Animator anim;
@@ -16,9 +16,9 @@ public class PlayerControl : MonoBehaviour {
     private bool moving = false;
     private bool attack = false;
 
-    private PlayerStatusfixed  playerstatus;
+    private PlayerStatusfixed playerstatus;
 
-	void Start ()
+    private void Start()
     {
         leftJoyStick.OnJoyStickTouchBegin += OnLeftJoyStickBegin;
         leftJoyStick.OnJoyStickTouchMove += OnLeftJoyStickMove;
@@ -32,8 +32,8 @@ public class PlayerControl : MonoBehaviour {
         anim = GetComponentInChildren<Animator>();
         playerstatus = GetComponent<PlayerStatusfixed>();
     }
-		
-	void Update ()
+
+    private void Update()
     {
         stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
@@ -41,12 +41,12 @@ public class PlayerControl : MonoBehaviour {
         {
             controller.Move(moveDirection * speed);
         }
-        if(stateInfo.IsName("Base Layer.player_idle") && moving)
+        if (stateInfo.IsName("Base Layer.player_idle") && moving)
         {
             anim.SetBool("walk", true);
             anim.SetBool("idle", false);
         }
-        if(stateInfo.IsName("Base Layer.player_walk") && !moving)
+        if (stateInfo.IsName("Base Layer.player_walk") && !moving)
         {
             anim.SetBool("idle", true);
             anim.SetBool("walk", false);
@@ -72,45 +72,51 @@ public class PlayerControl : MonoBehaviour {
 
 #endif
     }
+
     //左手摇杆接触开始
-    void OnLeftJoyStickBegin(Vector2 move)
+    private void OnLeftJoyStickBegin(Vector2 move)
     {
         //Debug.Log("touch begin.");
         moving = true;
     }
+
     //左手摇杆移动
-    void OnLeftJoyStickMove(Vector2 move)
+    private void OnLeftJoyStickMove(Vector2 move)
     {
         //Debug.Log("move: " + move.x + "," + move.y);
         moveDirection = new Vector3(move.x, 0, move.y);
     }
+
     //左手摇杆接触结束
-    void OnLeftJoyStickEnd()
+    private void OnLeftJoyStickEnd()
     {
         //Debug.Log("touch end.");
         moving = false;
     }
 
     //右手摇杆接触开始
-    void OnRightJoyStickBegin(Vector2 move)
+    private void OnRightJoyStickBegin(Vector2 move)
     {
         //开火
         attack = true;
 
         playerstatus.BulletConsume();           //消耗当前武器的弹药
     }
+
     //右手摇杆移动
-    void OnRightJoyStickMove(Vector2 move)
+    private void OnRightJoyStickMove(Vector2 move)
     {
         flipDirection = new Vector3(move.x, 0, move.y);
 
-        transform.rotation = Quaternion.LookRotation(flipDirection );
+        transform.rotation = Quaternion.LookRotation(flipDirection);
     }
+
     //右手摇杆接触结束
-    void OnRightJoyStickEnd()
+    private void OnRightJoyStickEnd()
     {
         attack = false;
     }
+
     public bool CheckAttack()
     {
         return attack;
