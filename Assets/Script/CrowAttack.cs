@@ -81,7 +81,7 @@ public class CrowAttack : MonoBehaviour {
             wantAttack = true;
             if(attack && !attackInCD)
             {
-                col.SendMessage("ApplyDamage", 34);
+                col.SendMessage("ApplyDamage", find_enemy.getDamage());
                 attackInCD = true;
 
                 Debug.Log("crow attack");

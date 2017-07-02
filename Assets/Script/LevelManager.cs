@@ -17,22 +17,32 @@ public class LevelManager : MonoBehaviour
 
     public Light globalLight;
 
+    private levelShow levelshow;
+
     private void Start()
     {
+        levelshow = GameObject.Find("levelShow").GetComponent<levelShow>();
+        levelshow.ShowCurrentLevel(level);
     }
-    void FixedUpdate()
+
+    private void FixedUpdate()
     {
-        if (Input.GetKeyUp(KeyCode.J))
+        /*if (Input.GetKeyUp(KeyCode.J))
         {
             LevelUp();
-        }
+        }*/
 
         if (enemyRemainCountLevel > 0 && AnimalList.Count < maxCountInMap)
         {
             CreateAnimalAtRandomPoint();
             Debug.Log(enemyRemainCountLevel + "+" + AnimalList.Count);
         }
+        if (enemyRemainCountLevel <= 0 && AnimalList.Count <= 0)
+        {
+            LevelUp();
+        }
     }
+
     /// <summary>
     /// 下一关
     /// </summary>
@@ -40,6 +50,7 @@ public class LevelManager : MonoBehaviour
     {
         level++;
         enemyRemainCountLevel = 5 + level * 5;
+        levelshow.ShowCurrentLevel(level);
         AdjustLighting();
     }
 
@@ -62,12 +73,13 @@ public class LevelManager : MonoBehaviour
 
         StartCoroutine(smoothAdjust(intensity));
     }
+
     /// <summary>
     /// 平滑调整光照强度
     /// </summary>
     /// <param name="intensity">目标强度</param>
     /// <returns></returns>
-    IEnumerator smoothAdjust(float intensity)
+    private IEnumerator smoothAdjust(float intensity)
     {
         float origin = globalLight.intensity;
         for (int i = 0; i < 40; i++)
@@ -83,22 +95,24 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void CreateAnimalATPoint(Transform Point)
+    private void CreateAnimalATPoint(Transform Point)
     {
         AnimalList.Add((GameObject)Instantiate(crow, Point.position, Point.rotation));
         enemyRemainCountLevel--;
     }
 
-    void CreateAnimalAtRandomPoint()
+    private void CreateAnimalAtRandomPoint()
     {
         int No = Random.Range(0, 7);
         AnimalList.Add((GameObject)Instantiate(crow, CreateAnimalPoint[No].position, CreateAnimalPoint[No].rotation));
         enemyRemainCountLevel--;
     }
+
     public void AddEnemyCount()
     {
         enemyCountLive++;
     }
+
     public void ReduceEnemyCount()
     {
         enemyCountLive--;

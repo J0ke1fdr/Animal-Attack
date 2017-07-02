@@ -15,6 +15,7 @@ public class PlayerStatusfixed : MonoBehaviour
 
     private int health;
     private float timeRecord;
+    private weaponChangeShow weaponShow;
 
     private void Start()
     {
@@ -22,6 +23,8 @@ public class PlayerStatusfixed : MonoBehaviour
 
         initWeaponHoldingState();           //初始化武器持有状态
         timeRecord = Time.time;
+
+        weaponShow = GameObject.Find("weaponChangeButton").GetComponent<weaponChangeShow>();
     }
 
     /// <summary>
@@ -80,6 +83,8 @@ public class PlayerStatusfixed : MonoBehaviour
             inUseWeapon = (GameObject)Instantiate(weapons[index], handPos.position, handPos.rotation);
             inUseWeapon.transform.parent = handPos.transform;
 
+            weaponShow.ShowGetWeapon(index);
+            weaponShow.ShowBulletCount(weaponBulletState[index]);
             //Debug.Log(inUseWeapon.transform.localPosition);
         }
     }
@@ -134,6 +139,8 @@ public class PlayerStatusfixed : MonoBehaviour
     /// </summary>
     public void BulletConsume()
     {
+        weaponShow.ShowBulletCount(weaponBulletState[inUseWeaponIndex]);
+
         if (inUseWeaponIndex != 0)
         {
             weaponBulletState[inUseWeaponIndex] -= 1;

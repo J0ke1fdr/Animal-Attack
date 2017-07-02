@@ -24,7 +24,15 @@ public class chooseScene : MonoBehaviour {
         {
             choosedPlayerIndex.SceneIndex = 1;
         }
-        //Debug.Log(gameObject.name);
+        else if (gameObject.name == "Level3")
+        {
+            choosedPlayerIndex.SceneIndex = 2;
+        }
+        else if (gameObject.name == "Level4")
+        {
+            choosedPlayerIndex.SceneIndex = 3;
+        }
+        Debug.Log(gameObject.name + " " + choosedPlayerIndex.SceneIndex);
     }
 
    

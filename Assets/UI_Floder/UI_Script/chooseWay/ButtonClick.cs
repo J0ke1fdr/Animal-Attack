@@ -10,9 +10,13 @@ public class ButtonClick : MonoBehaviour {
     private RectTransform closeButton;
     private RectTransform okButton;
 
-    private Image roomPanel;
+    private RectTransform roomPanel;
 
-    private Image creatRoomName;
+    private RectTransform creatRoomName;
+
+    /****************MeneScene**************/
+  //  private RectTransform choosePlayerScene;
+  //  private RectTransform connectScene;
 
     private void Awake()
     {
@@ -21,33 +25,45 @@ public class ButtonClick : MonoBehaviour {
         closeButton = GameObject.Find("closeScene").GetComponent<RectTransform>();
         okButton = GameObject.Find("OK").GetComponent<RectTransform>();
 
-        roomPanel = GameObject.Find("roomPanel").GetComponent<Image>();
+        roomPanel = GameObject.Find("roomPanel").GetComponent<RectTransform>();
 
-        creatRoomName = GameObject.Find("roomName").GetComponent<Image>();
+        creatRoomName = GameObject.Find("createdRoomName").GetComponent<RectTransform>();
+
+       // choosePlayerScene = GameObject.Find("choosePlayer").GetComponent<RectTransform>();
+      //  connectScene = GameObject.Find()
+
+
+
     }
 
     private void Start()
     {
-        okButton.gameObject.SetActive(false);
-        roomPanel.gameObject.SetActive(false);
-        creatRoomName.gameObject.SetActive(false);
+        //okButton.gameObject.SetActive(false);
+        //roomPanel.gameObject.SetActive(false);
+        //creatRoomName.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if(creatButton.gameObject.activeSelf && joinInButton.gameObject.activeSelf)
+        {
+            okButton.gameObject.SetActive(false);
+            roomPanel.gameObject.SetActive(false);
+            creatRoomName.gameObject.SetActive(false);
+        }
     }
 
     public void onCreatRoomClick()///创建游戏
     {
         Debug.Log("creat");
-        okButton.gameObject.SetActive(true);
-        creatRoomName.gameObject.SetActive(true);
+        
 
         creatButton.gameObject.SetActive(false);
         joinInButton.gameObject.SetActive(false);
+        roomPanel.gameObject.SetActive(false);
 
-
-        //  if (!okButton.gameObject.activeSelf)
-        // {
-
-        //  }
-
+        okButton.gameObject.SetActive(true);
+        creatRoomName.gameObject.SetActive(true);     
     }
 
     public void onJoinInRoomClick()
@@ -80,13 +96,16 @@ public class ButtonClick : MonoBehaviour {
         }
         else
         {
-            SceneManager.LoadScene(0);//加载主菜单
+            //加载主菜单
+            MenuSceneManager.connectScene.gameObject.SetActive(false);
+            MenuSceneManager.mainMenuScene.gameObject.SetActive(true);
         }
-
     }
 
     public void onOkClick()
     {
         Debug.Log("OK");
+        MenuSceneManager.connectScene.gameObject.SetActive(false);
+        MenuSceneManager.chooseScene.gameObject.SetActive(true);
     }
 }

@@ -12,13 +12,19 @@ public class findEnemy : MonoBehaviour
     private float currentTime = 0;
     private Vector3 targetPosition;
     private float randomMoveTime;
-    public LevelManager levelManager;
+    private LevelManager levelManager;
+    private int level = 0;
+    private float speed;
+    private int damage = 10;
+    public GameObject bloodbag;
+    public GameObject randbox;
 
     // Use this for initialization
     private void Start()
     {
+        levelManager = GameObject.Find("CreateAnimalPoints").GetComponent<LevelManager>();
         controller = GetComponent<CharacterController>();
-        health = 200;
+        health = 200 + levelManager.getLevel() * 20;
         targetPosition = new Vector3(0, 0, 0);
     }
 
@@ -35,7 +41,7 @@ public class findEnemy : MonoBehaviour
             else*/
             {
                 transform.LookAt(currentEnemy.transform);
-                controller.Move((currentEnemy.transform.position - transform.position) * 0.007f);
+                controller.Move((currentEnemy.transform.position - transform.position) * speed);
             }
         }
         else
@@ -50,9 +56,19 @@ public class findEnemy : MonoBehaviour
                 }
                 else
                 {
-                    controller.Move((targetPosition - transform.position) * 0.007f);
+                    controller.Move((targetPosition - transform.position) * speed);
                 }
             }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (level != levelManager.getLevel())
+        {
+            level = levelManager.getLevel();
+            speed = 0.006f + levelManager.getLevel() * 0.001f;
+            damage = 5 + levelManager.getLevel() * 5;
         }
     }
 
@@ -84,9 +100,24 @@ public class findEnemy : MonoBehaviour
         if (health <= 0 && die == false)
         {
             die = true;
-            GameObject obj = (GameObject)Instantiate(boom, transform.position, transform.rotation);
-            levelManager.AnimalDie(gameObject);
-            Destroy(gameObject);
+            if (gameObject)
+            {
+                int randint = Random.Range(0, 10);
+                if (randint == 9)
+                {
+                    GameObject Bloodbag = (GameObject)Instantiate(bloodbag, transform.position, transform.rotation);
+                    Bloodbag.GetComponent<BloodBag>().DestroyProp(20);
+                }
+                else if (randint == 1)
+                {
+                    GameObject Randbox = (GameObject)Instantiate(randbox, transform.position, transform.rotation);
+                    Randbox.GetComponent<RandBox>().DestroyProp(20);
+                }
+                //GameObject Boom = (GameObject)Instantiate(boom, transform.position, transform.rotation);
+
+                levelManager.AnimalDie(gameObject);
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -98,5 +129,10 @@ public class findEnemy : MonoBehaviour
     public void StopWalk()
     {
         canWalk = false;
+    }
+
+    public int getDamage()
+    {
+        return damage;
     }
 }
