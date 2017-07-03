@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LockDoor : MonoBehaviour
+public class AppearBox : MonoBehaviour
 {
     private Collider col;
+    public GameObject BossElement;
+    public Transform bossAppear;
 
     private void Start()
     {
@@ -14,6 +16,8 @@ public class LockDoor : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && col.isTrigger)
         {
+            Instantiate(BossElement, bossAppear.position, bossAppear.rotation);
+            Destroy(gameObject);
         }
     }
 }

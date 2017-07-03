@@ -5,7 +5,7 @@ public class PlayerStatusfixed : MonoBehaviour
 {
     public Transform handPos;                   //持武器的手的位置
     public GameObject[] weapons;                //存放各武器的预制体
-    public int bulletCountTest;
+    //public int bulletCountTest;
 
     private bool[] weaponHoldingState;          //各武器持有状态,true表示拥有该武器
     private int[] weaponBulletState;            //各武器剩余子弹情况
@@ -49,10 +49,10 @@ public class PlayerStatusfixed : MonoBehaviour
         }
         //初始化各武器的弹药增加量
         weaponBulletIncrement[0] = 0;
-        weaponBulletIncrement[1] = 20;
-        weaponBulletIncrement[2] = 100;
-        weaponBulletIncrement[3] = 100;
-        weaponBulletIncrement[4] = 40;
+        weaponBulletIncrement[1] = 100;
+        weaponBulletIncrement[2] = 50;
+        weaponBulletIncrement[3] = 40;
+        weaponBulletIncrement[4] = 20;
         weaponBulletIncrement[5] = 10;
     }
 
@@ -131,6 +131,9 @@ public class PlayerStatusfixed : MonoBehaviour
             weaponBulletState[index] += count;
             if (weaponBulletState[index] > count * 3)
                 weaponBulletState[index] = count * 3;
+
+            if (index == inUseWeaponIndex)
+                weaponShow.ShowBulletCount(weaponBulletState[inUseWeaponIndex]);
         }
     }
 
@@ -139,8 +142,6 @@ public class PlayerStatusfixed : MonoBehaviour
     /// </summary>
     public void BulletConsume()
     {
-        weaponShow.ShowBulletCount(weaponBulletState[inUseWeaponIndex]);
-
         if (inUseWeaponIndex != 0)
         {
             weaponBulletState[inUseWeaponIndex] -= 1;
@@ -149,7 +150,8 @@ public class PlayerStatusfixed : MonoBehaviour
                 WeaponBreak();
             }
         }
-        bulletCountTest = weaponBulletState[inUseWeaponIndex];
+        //bulletCountTest = weaponBulletState[inUseWeaponIndex];
+        weaponShow.ShowBulletCount(weaponBulletState[inUseWeaponIndex]);
     }
 
     public int GetHealth()

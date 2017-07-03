@@ -29,7 +29,7 @@ public class weaponChangeShow : MonoBehaviour {
     /// <param name="weaponCount">子弹数量</param>
     public void ShowBulletCount(int bulletCount)
     {
-        bulletCountShow.text = bulletCount.ToString();
+        bulletCountShow.text = "x " + bulletCount.ToString();
     }
 
 }

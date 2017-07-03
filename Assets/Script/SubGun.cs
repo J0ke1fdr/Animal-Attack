@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SubGun : MonoBehaviour {
-
+public class SubGun : MonoBehaviour
+{
     public GameObject subGunBullet;
     public Transform gunPoint;                              //枪口位置
     public float firerote = 0.2f;
@@ -10,21 +10,21 @@ public class SubGun : MonoBehaviour {
 
     private PlayerControl playerControl;
     private PlayerStatusfixed playerStatus;
+
     //private WeaponManager weaponManager;
     private float currentfiretime;
+
     private bool wantfire = false;
-    
-    
-    void Start ()
+
+    private void Start()
     {
         GameObject player = GameObject.Find("Player");
         playerControl = player.GetComponent<PlayerControl>();
         playerStatus = player.GetComponent<PlayerStatusfixed>();
         //weaponManager = player.GetComponent<WeaponManager>();
-
     }
-	
-	void Update ()
+
+    private void Update()
     {
         if (!playerControl.CheckAttack())
         {
@@ -47,7 +47,7 @@ public class SubGun : MonoBehaviour {
     public void ShootBullets()
     {
         GameObject bullet = (GameObject)Instantiate(subGunBullet, gunPoint.position, gunPoint.rotation);
-        playerStatus.BulletConsume();       
+        Destroy(bullet, 2.5f);
+        playerStatus.BulletConsume();
     }
-
 }

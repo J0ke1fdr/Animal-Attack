@@ -3,8 +3,8 @@ using System.Collections;
 
 public class StabEffect : MonoBehaviour
 {
-    public float damage = 10;
-    public float damageTimeSpan = 1;
+    private float damage = 30;
+    public float damageTimeSpan = 0.1f;
     private float lastTime = 0;
 
     private void OnTriggerStay(Collider other)

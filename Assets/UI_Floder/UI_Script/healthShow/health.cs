@@ -22,6 +22,7 @@ public class health : MonoBehaviour {
 
         playerStatus = GameObject.Find("Player").GetComponent<PlayerStatusfixed>();
 
+        healthSlider.enabled = false;
         healthSlider.maxValue = maxHealth;
     }
 	

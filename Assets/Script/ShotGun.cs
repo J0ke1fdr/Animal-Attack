@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShotGun : MonoBehaviour {
-
+public class ShotGun : MonoBehaviour
+{
     public GameObject shotGunBullet;
     public Transform gunPoint;                              //枪口位置
     public float firerote = 0.6f;
@@ -13,14 +13,14 @@ public class ShotGun : MonoBehaviour {
     private float currentfiretime;
     private bool wantfire = false;
 
-    void Start ()
+    private void Start()
     {
         GameObject player = GameObject.Find("Player");
         playerControl = player.GetComponent<PlayerControl>();
         playerStatus = player.GetComponent<PlayerStatusfixed>();
     }
-	
-	void Update ()
+
+    private void Update()
     {
         if (!playerControl.CheckAttack())
         {
@@ -53,8 +53,16 @@ public class ShotGun : MonoBehaviour {
         GameObject obj7 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) + 0.05f, 0));
         GameObject obj8 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y) - 0.05f, 0));
         GameObject obj9 = (GameObject)Instantiate(shotGunBullet, gunPoint.position, gunPoint.rotation * Quaternion.EulerAngles(0, -Mathf.Atan2(transform.up.x, transform.up.y), 0));
+
+        float timeToDestroy = 1.6f;
+        Destroy(obj, timeToDestroy);
+        Destroy(obj2, timeToDestroy);
+        Destroy(obj3, timeToDestroy);
+        Destroy(obj4, timeToDestroy);
+        Destroy(obj5, timeToDestroy);
+        Destroy(obj6, timeToDestroy);
+        Destroy(obj7, timeToDestroy);
+        Destroy(obj8, timeToDestroy);
+        Destroy(obj9, timeToDestroy);
     }
-
-
-
 }

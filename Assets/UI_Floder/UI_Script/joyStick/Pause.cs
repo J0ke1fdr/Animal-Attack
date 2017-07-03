@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Pause : MonoBehaviour
 {
 
     private RectTransform pausePanel;
+    public Sprite[] soundImg;
+    private Button soundButton;
 
     private void Awake()
     {
-        pausePanel = GameObject.Find("AddUI/pausePanel").GetComponent<RectTransform>();       
+        pausePanel = GameObject.Find("AddUI/pausePanel").GetComponent<RectTransform>();
+        soundButton = GameObject.Find("soundButton").GetComponent<Button>();
     }
 
     private void Start()
@@ -18,14 +22,9 @@ public class Pause : MonoBehaviour
     }
 
     public void onPauseClick()
-    {
-        Debug.Log(gameObject.name);
-        //if (!pausePanel.gameObject.activeSelf)
-      //  {
-            pausePanel.gameObject.SetActive(true);
-            Time.timeScale = 0;
-      //  }
-
+    {  
+        Time.timeScale = 0;
+        pausePanel.gameObject.SetActive(true);         
     }
 
     public void onPlayClick()
@@ -39,5 +38,18 @@ public class Pause : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-
+    private static int soundImgIndex = 0;
+    public void onSoundClick()
+    {
+        if(soundImgIndex == 0)
+        {
+            
+            soundImgIndex++;
+        }
+        else if(soundImgIndex == 1)
+        {
+            soundImgIndex--;
+        }
+        soundButton.image.sprite = soundImg[soundImgIndex];
+    }
 }

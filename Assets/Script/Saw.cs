@@ -2,14 +2,14 @@
 using System.Collections;
 
 public class Saw : MonoBehaviour {
-
-    
-
-    public float basicATK = 10f;
-    public float intervalAttackTime = 0.1f;
+   
+    public float basicATK = 100f;
+    public float intervalAttackTime = 0.3f;
 
     private float timeRecord;
     private bool attack = false;
+    private bool damage = false;
+
     private Animator anim;
     private AnimatorStateInfo stateInfo;
     private PlayerControl playerControl;
@@ -28,6 +28,9 @@ public class Saw : MonoBehaviour {
     {
         stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
+        if (stateInfo.IsName("Base Layer.saw_idle"))
+            damage = false;
+
         if (stateInfo.IsName("Base Layer.saw_idle") && playerControl.CheckAttack())
         {
             attack = true;
@@ -38,24 +41,28 @@ public class Saw : MonoBehaviour {
         if(stateInfo.IsName("Base Layer.saw_attack") && !playerControl.CheckAttack())
         {
             attack = false;
-
             anim.SetBool("attack", false);
             anim.SetBool("idle",true);
         }
-	}
+
+        if (Time.time > timeRecord + intervalAttackTime && attack)
+        {
+            timeRecord = Time.time;
+            damage = true;
+            //damage = !damage;
+        }
+        else
+            damage = false;
+
+    }
 
     private void OnTriggerStay(Collider col)
     {
-        if (col.tag == "Enemy" && attack)
+        if (col.tag == "Enemy" && damage)
         {
-            if(Time.time > timeRecord + intervalAttackTime)
-            {
-                timeRecord = Time.time;
-
-                playerStatus.BulletConsume();
-                //Debug.Log("ATK: " + basicATK);
-                col.gameObject.SendMessage("ApplyDamage", basicATK);
-            }
+            playerStatus.BulletConsume();
+            Debug.Log("damage at " + Time.time);
+            col.gameObject.SendMessage("ApplyDamage", basicATK);
         }
     }
 }

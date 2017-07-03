@@ -16,7 +16,7 @@ public class PlayerControl : MonoBehaviour
     private bool moving = false;
     private bool attack = false;
 
-    private PlayerStatusfixed playerstatus;
+    //private PlayerStatusfixed playerstatus;
 
     private void Start()
     {
@@ -30,7 +30,7 @@ public class PlayerControl : MonoBehaviour
 
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
-        playerstatus = GetComponent<PlayerStatusfixed>();
+        //playerstatus = GetComponent<PlayerStatusfixed>();
     }
 
     private void Update()
@@ -39,7 +39,7 @@ public class PlayerControl : MonoBehaviour
 
         if (moving)
         {
-            controller.Move(moveDirection * speed);
+            controller.Move(moveDirection * speed * Time.deltaTime);
         }
         if (stateInfo.IsName("Base Layer.player_idle") && moving)
         {
@@ -99,8 +99,6 @@ public class PlayerControl : MonoBehaviour
     {
         //开火
         attack = true;
-
-        playerstatus.BulletConsume();           //消耗当前武器的弹药
     }
 
     //右手摇杆移动

@@ -9,5 +9,6 @@ public class weaponChangeButton : MonoBehaviour
     public void OnClick()
     {
         //weaponManager.SendMessage("OnChangeButtonClick");
+        playerStatus.SendMessage("OnChangeButtonClick");
     }
 }

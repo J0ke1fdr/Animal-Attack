@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Pistol : MonoBehaviour {
-
+public class Pistol : MonoBehaviour
+{
     public GameObject pistolBullet;
     public Transform gunPoint;                              //枪口位置
     public float firerote = 0.5f;                           //射速
@@ -13,14 +13,14 @@ public class Pistol : MonoBehaviour {
     private float currentfiretime;
     private bool wantfire = false;
 
-    void Start()
+    private void Start()
     {
         GameObject player = GameObject.Find("Player");
         playerControl = player.GetComponent<PlayerControl>();
         playerStatus = player.GetComponent<PlayerStatusfixed>();
     }
 
-    void Update()
+    private void Update()
     {
         if (!playerControl.CheckAttack())
         {
@@ -43,6 +43,8 @@ public class Pistol : MonoBehaviour {
     public void ShootBullets()
     {
         GameObject bullet = (GameObject)Instantiate(pistolBullet, gunPoint.position, gunPoint.rotation);
+
+        Destroy(bullet, 2);
         //playerStatus.BulletConsume();
     }
 }

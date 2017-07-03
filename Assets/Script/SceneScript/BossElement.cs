@@ -6,9 +6,9 @@ public class BossElement : MonoBehaviour
     // Use this for initialization
     public GameObject appearEffect;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             Instantiate(appearEffect, transform.position, transform.rotation);
             Destroy(gameObject);
