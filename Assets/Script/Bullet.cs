@@ -27,7 +27,10 @@ public class Bullet : MonoBehaviour
             Destroy(blood_obj, 1);
             coll.gameObject.SendMessage("ApplyDamage", 34);
         }
-
+        else if (coll.gameObject.tag == "Prop")
+        {
+            coll.gameObject.SendMessage("ApplyDamage", 34);
+        }
         //GameObject obj = (GameObject)Instantiate(blood, transform.position + transform.up * 0.3f, transform.rotation);
 
         Destroy(gameObject);

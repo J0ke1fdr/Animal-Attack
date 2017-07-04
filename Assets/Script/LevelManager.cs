@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour
         if (enemyRemainCountLevel > 0 && AnimalList.Count < maxCountInMap)
         {
             CreateAnimalAtRandomPoint();
-            Debug.Log(enemyRemainCountLevel + "+" + AnimalList.Count);
+            //Debug.Log(enemyRemainCountLevel + "+" + AnimalList.Count);
         }
         if (enemyRemainCountLevel <= 0 && AnimalList.Count <= 0)
         {
