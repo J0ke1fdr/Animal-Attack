@@ -18,10 +18,12 @@ public class Crab : MonoBehaviour
     private LineLevelManager linelevelManager = null;
     public GameObject bloodbag;
     public GameObject randbox;
+    private AudioSource audioSource;
 
     // Use this for initialization
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         try
         {
             levelManager = GameObject.Find("CreateAnimalPoints").GetComponent<LevelManager>();
@@ -110,6 +112,8 @@ public class Crab : MonoBehaviour
 
     private void ApplyDamage(int damage)
     {
+        if (!audioSource.isPlaying)
+            audioSource.Play();
         health -= damage;
         if (health <= 0 && die == false)
         {

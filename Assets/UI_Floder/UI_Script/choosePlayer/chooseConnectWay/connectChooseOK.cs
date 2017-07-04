@@ -34,7 +34,7 @@ public class connectChooseOK : MonoBehaviour {
                 MenuSceneManager.chooseScene.gameObject.SetActive(true);
                 MenuSceneManager.choosePlayerScene.gameObject.SetActive(false);
                 MenuSceneManager.chooseModel.gameObject.SetActive(false);
-                MenuSceneManager.mainMenuScene.gameObject.SetActive(true);
+                MenuSceneManager.mainMenuScene.gameObject.SetActive(false);
             }
             //返回到主菜单          
         }
@@ -42,7 +42,13 @@ public class connectChooseOK : MonoBehaviour {
 
     private void submitChoosedPlayer()
     {
-        Debug.Log("进入submitChoosedPlayer:" + "提交" + MenuSceneManager.choosedPlayer);     
-        SceneManager.LoadScene(1);
+        Debug.Log("进入submitChoosedPlayer:" + "提交" + MenuSceneManager.choosedPlayer);
+
+        PlayerPrefs.SetInt("PlayerIndex",MenuSceneManager.choosedPlayer);
+
+        int LoadScene = MenuSceneManager.choosedScene++;
+        SceneManager.LoadScene(LoadScene);
+
+
     }
 }

@@ -48,7 +48,7 @@ public class LineLevelManager : MonoBehaviour
                     currentPoint++;
             }
 
-            Debug.Log(enemyRemainCountLevel + "+" + AnimalList.Count);
+            //  Debug.Log(enemyRemainCountLevel + "+" + AnimalList.Count);
         }
         if (enemyRemainCountLevel <= 0 && AnimalList.Count <= 0)
         {

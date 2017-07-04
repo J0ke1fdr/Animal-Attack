@@ -16,12 +16,15 @@ public class SubGun : MonoBehaviour
 
     private bool wantfire = false;
 
+    private WeaponMusic weaponMusic;
+
     private void Start()
     {
         GameObject player = GameObject.Find("Player");
         playerControl = player.GetComponent<PlayerControl>();
         playerStatus = player.GetComponent<PlayerStatusfixed>();
         //weaponManager = player.GetComponent<WeaponManager>();
+        weaponMusic = GetComponent<WeaponMusic>();
     }
 
     private void Update()
@@ -49,5 +52,6 @@ public class SubGun : MonoBehaviour
         GameObject bullet = (GameObject)Instantiate(subGunBullet, gunPoint.position, gunPoint.rotation);
         Destroy(bullet, 2.5f);
         playerStatus.BulletConsume();
+        weaponMusic.Fire();
     }
 }

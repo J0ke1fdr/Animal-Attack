@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Axe : MonoBehaviour {
-
-    
+public class Axe : MonoBehaviour
+{
     public float attackAnimPauseTime = 0.4f;
     public float basicATK = 100f;
     public float maxATK = 300f;
@@ -13,29 +12,29 @@ public class Axe : MonoBehaviour {
     public BoxCollider boxCollider1;
     public BoxCollider boxCollider2;
 
-    private float actualATK = 100f;                         
+    private float actualATK = 100f;
     private bool charge = false;
     private bool axeAttack = false;
-    
 
     private float timeRecord;
     private Animator anim;
     private AnimatorStateInfo stateInfo;
     private PlayerControl playerControl;
     private PlayerStatusfixed playerStatus;
-    
 
-    void Start ()
+    private WeaponMusic weaponMusic;
+
+    private void Start()
     {
         anim = GetComponent<Animator>();
         //stateInfo = anim.GetCurrentAnimatorStateInfo(0);
         playerControl = GameObject.Find("Player").GetComponent<PlayerControl>();
         playerStatus = GameObject.Find("Player").GetComponent<PlayerStatusfixed>();
-        
+
+        weaponMusic = GetComponent<WeaponMusic>();
     }
-	
-	
-	void Update ()
+
+    private void Update()
     {
         stateInfo = anim.GetCurrentAnimatorStateInfo(0);
         if (stateInfo.IsName("Base Layer.axe_idle"))
@@ -53,18 +52,18 @@ public class Axe : MonoBehaviour {
             anim.SetBool("finish", false);
         }
         //蓄力状态下松开，做出攻击动作
-        if(stateInfo.IsName("Base Layer.axe_charge") && !playerControl.CheckAttack() && charge)
+        if (stateInfo.IsName("Base Layer.axe_charge") && !playerControl.CheckAttack() && charge)
         {
             charge = false;
             axeAttack = true;
             boxCollider1.enabled = true;
             boxCollider2.enabled = true;
             CalActualATK();
-            playerStatus.BulletConsume();      
-              
+            playerStatus.BulletConsume();
+
             anim.SetBool("charge", false);
             anim.SetBool("attack", true);
-            
+            weaponMusic.Fire();
             StartCoroutine(attackFinish());
         }
         /*
@@ -74,8 +73,9 @@ public class Axe : MonoBehaviour {
             axeAttack = false;
         */
     }
+
     //攻击状态下停顿一会回到空闲状态
-    IEnumerator attackFinish()
+    private IEnumerator attackFinish()
     {
         yield return new WaitForSeconds(attackAnimPauseTime);
 
@@ -84,6 +84,7 @@ public class Axe : MonoBehaviour {
         anim.SetBool("finish", true);
         anim.SetBool("attack", false);
     }
+
     //计算实际攻击力
     private void CalActualATK()
     {
@@ -104,12 +105,10 @@ public class Axe : MonoBehaviour {
 
     private void OnTriggerEnter(Collider col)
     {
-        if(col.tag == "Enemy" && axeAttack)
+        if (col.tag == "Enemy" && axeAttack)
         {
             //Debug.Log("ATK: " + actualATK);
             col.gameObject.SendMessage("ApplyDamage", actualATK);
         }
     }
-
-    
 }

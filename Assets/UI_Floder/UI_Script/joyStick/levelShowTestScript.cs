@@ -7,27 +7,20 @@ public class levelShowTestScript : MonoBehaviour
     private levelShow levelShowScript;
     private msgShow msgShowText;
 
-    private GameResult gameResult;
+    private GameResult GameResult;
 
     private void Awake()
     {
         levelShowScript = GameObject.Find("levelShow").GetComponent<levelShow>();
         //  msgShowText = GameObject.Find("msgShow").GetComponent<msgShow>();
-        gameResult = GameObject.Find("GameResult").GetComponent<GameResult>();
-    }
-
-    private void Start()
-    {
-        //gameOver.showGameOverPanel();
+        // GameResult = GameObject.Find("GameResult").GetComponent<GameResult>();
     }
 
     public void onButtonClick()
     {
         Debug.Log("进入Game Over");
-        // levelShowScript.ShowCurrentLevel(0);
-        // msgShowText.ShowMsg(1);
-        //  gameOver.showGameOverPanel();
-        // GameResult.gameOverPanel.gameObject.SetActive(true);
-        gameResult.showGameWinPanel();
+        //  GameResult.showGameWinPanel();
+        GameResult.showGameOverPanel();
+        //  msgShowText.ShowMsg(2);
     }
 }

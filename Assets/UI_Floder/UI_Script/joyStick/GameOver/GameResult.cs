@@ -1,28 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameResult : MonoBehaviour
-{
-    public GameObject gameOverPanel;
-    public GameObject gameWinPanel;
+public class GameResult : MonoBehaviour {
 
-    private void Awake()
-    {
-        if (gameObject.name == "GameOver")
-        {
-        }
-        else if (gameObject.name == "GameWin")
-        {
-        }
+    public static RectTransform gameOverPanel;
+    public static RectTransform gameWinPanel;
+	// Use this for initialization
+	void Awake () {
+        gameOverPanel = GameObject.Find("GameOverPanel").GetComponent<RectTransform>();
+        gameWinPanel = GameObject.Find("GameWinPanel").GetComponent<RectTransform>();
+        
     }
 
-    // Use this for initialization
     private void Start()
     {
-        // gameOverPanel = GameObject.FindGameObjectWithTag("Lose");
-        // gameWinPanel = GameObject.Find("GameWinPanel").GetComponent<RectTransform>();
-        // gameOverPanel.SetActive(false);
-        // gameWinPanel.SetActive(false);
+        gameOverPanel.gameObject.SetActive(false);
+        gameWinPanel.gameObject.SetActive(false);
     }
 
     public void showGameOverPanel()
@@ -34,4 +27,6 @@ public class GameResult : MonoBehaviour
     {
         gameWinPanel.gameObject.SetActive(true);
     }
+
+
 }

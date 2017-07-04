@@ -14,7 +14,9 @@ public class Rocket : MonoBehaviour
     private bool wantfire = false;
 
     private Animator anim;
+
     //private AnimatorStateInfo stateInfo;
+    private WeaponMusic weaponMusic;
 
     private void Start()
     {
@@ -22,6 +24,7 @@ public class Rocket : MonoBehaviour
         playerControl = player.GetComponent<PlayerControl>();
         playerStatus = player.GetComponent<PlayerStatusfixed>();
         anim = GetComponent<Animator>();
+        weaponMusic = GetComponent<WeaponMusic>();
     }
 
     private void Update()
@@ -51,7 +54,7 @@ public class Rocket : MonoBehaviour
     {
         GameObject grenade_obj = (GameObject)Instantiate(grenade, gunPoint.position, gunPoint.rotation);
         playerStatus.BulletConsume();
-
+        weaponMusic.Fire();
         //StartCoroutine(Load());
     }
 

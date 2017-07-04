@@ -12,12 +12,14 @@ public class ShotGun : MonoBehaviour
     private PlayerStatusfixed playerStatus;
     private float currentfiretime;
     private bool wantfire = false;
+    private WeaponMusic weaponMusic;
 
     private void Start()
     {
         GameObject player = GameObject.Find("Player");
         playerControl = player.GetComponent<PlayerControl>();
         playerStatus = player.GetComponent<PlayerStatusfixed>();
+        weaponMusic = GetComponent<WeaponMusic>();
     }
 
     private void Update()
@@ -64,5 +66,7 @@ public class ShotGun : MonoBehaviour
         Destroy(obj7, timeToDestroy);
         Destroy(obj8, timeToDestroy);
         Destroy(obj9, timeToDestroy);
+
+        weaponMusic.Fire();
     }
 }

@@ -16,6 +16,7 @@ public class PlayerStatusfixed : MonoBehaviour
     private int health;
     private float timeRecord;
     private weaponChangeShow weaponShow;
+    private RoleMusicManager musicManager;
 
     private void Start()
     {
@@ -25,6 +26,8 @@ public class PlayerStatusfixed : MonoBehaviour
         timeRecord = Time.time;
 
         weaponShow = GameObject.Find("weaponChangeButton").GetComponent<weaponChangeShow>();
+
+        musicManager = GetComponent<RoleMusicManager>();
     }
 
     /// <summary>
@@ -119,6 +122,7 @@ public class PlayerStatusfixed : MonoBehaviour
     /// <param name="index"></param>
     public void AddWeaponByIndex(int index)
     {
+        musicManager.PickUp();
         int count = weaponBulletIncrement[index];
 
         if (weaponHoldingState[index] == false)
@@ -162,6 +166,19 @@ public class PlayerStatusfixed : MonoBehaviour
     private void ApplyDamage(int damage)
     {
         health -= damage;
+        musicManager.Hurt();
+        if (health <= 0)
+        {
+            musicManager.Die();
+        }
+    }
+
+    private void Update()
+    {
+        if (health <= 10 && health > 0)
+        {
+            musicManager.LowBlood();
+        }
     }
 
     private void ApplyHealth(int h)

@@ -20,8 +20,11 @@ public class LevelManager : MonoBehaviour
 
     private levelShow levelshow;
 
+    private AudioSource audioSource;
+
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         levelshow = GameObject.Find("levelShow").GetComponent<levelShow>();
         levelshow.ShowCurrentLevel(level);
     }
@@ -53,6 +56,7 @@ public class LevelManager : MonoBehaviour
         enemyRemainCountLevel = 5 + level * 5;
         levelshow.ShowCurrentLevel(level);
         AdjustLighting();
+        audioSource.Play();
     }
 
     /// <summary>

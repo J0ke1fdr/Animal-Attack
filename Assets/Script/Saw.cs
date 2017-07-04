@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Saw : MonoBehaviour {
-   
+public class Saw : MonoBehaviour
+{
     public float basicATK = 100f;
     public float intervalAttackTime = 0.3f;
 
@@ -14,17 +14,18 @@ public class Saw : MonoBehaviour {
     private AnimatorStateInfo stateInfo;
     private PlayerControl playerControl;
     private PlayerStatusfixed playerStatus;
+    private WeaponMusic weaponMusic;
 
-    void Start ()
+    private void Start()
     {
         anim = GetComponent<Animator>();
         playerControl = GameObject.Find("Player").GetComponent<PlayerControl>();
         playerStatus = GameObject.Find("Player").GetComponent<PlayerStatusfixed>();
-
+        weaponMusic = GetComponent<WeaponMusic>();
         timeRecord = Time.time;
     }
-	
-	void Update ()
+
+    private void Update()
     {
         stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
@@ -37,12 +38,14 @@ public class Saw : MonoBehaviour {
 
             anim.SetBool("attack", true);
             anim.SetBool("idle", false);
+            weaponMusic.Fire();
         }
-        if(stateInfo.IsName("Base Layer.saw_attack") && !playerControl.CheckAttack())
+        if (stateInfo.IsName("Base Layer.saw_attack") && !playerControl.CheckAttack())
         {
             attack = false;
             anim.SetBool("attack", false);
-            anim.SetBool("idle",true);
+            anim.SetBool("idle", true);
+            weaponMusic.StopFire();
         }
 
         if (Time.time > timeRecord + intervalAttackTime && attack)
@@ -53,7 +56,6 @@ public class Saw : MonoBehaviour {
         }
         else
             damage = false;
-
     }
 
     private void OnTriggerStay(Collider col)

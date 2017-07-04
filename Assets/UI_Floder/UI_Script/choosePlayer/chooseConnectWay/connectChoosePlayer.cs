@@ -10,6 +10,7 @@ public class connectChoosePlayer : MonoBehaviour {
 
     public Image choosedPlayerImage; 
     private Text choosedPlayerName;
+    private string Name;
 
     private void Start()
     {
@@ -18,21 +19,21 @@ public class connectChoosePlayer : MonoBehaviour {
         choosedPlayerImage = GameObject.Find("choosedPlayer/choosedPlayerImg").GetComponent<Image>();
         choosedPlayerName = GameObject.Find("choosedPlayerText").GetComponent<Text>();
 
-        choosedPlayerName.text = "角色名称";
+        choosedPlayerName.text = "Farmer";
     }
     public void onChooseClick()
     {
 
         switch (choosePlayerButton.name)
         {
-            case "1": MenuSceneManager.choosedPlayer = 0; break;
-            case "2": MenuSceneManager.choosedPlayer = 1; break;
-            case "3": MenuSceneManager.choosedPlayer = 2; break;
+            case "1": MenuSceneManager.choosedPlayer = 0; name = "Farmer"; break;
+            case "2": MenuSceneManager.choosedPlayer = 1;name = "Athlete"; break;
+            case "3": MenuSceneManager.choosedPlayer = 2;name = "Soldier"; break;
             case "4": MenuSceneManager.choosedPlayer = 3; break;
         }
         // Debug.Log("Left" + choosePlayerManager.leftChoosedPlayer);
         choosedPlayerImage.sprite = player[MenuSceneManager.choosedPlayer];
-        choosedPlayerName.text = "角色" + gameObject.name;
+        choosedPlayerName.text = name;
 
     }
 }

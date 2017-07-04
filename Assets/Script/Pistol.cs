@@ -13,11 +13,14 @@ public class Pistol : MonoBehaviour
     private float currentfiretime;
     private bool wantfire = false;
 
+    private WeaponMusic weaponMusic;
+
     private void Start()
     {
         GameObject player = GameObject.Find("Player");
         playerControl = player.GetComponent<PlayerControl>();
         playerStatus = player.GetComponent<PlayerStatusfixed>();
+        weaponMusic = GetComponent<WeaponMusic>();
     }
 
     private void Update()
@@ -45,6 +48,8 @@ public class Pistol : MonoBehaviour
         GameObject bullet = (GameObject)Instantiate(pistolBullet, gunPoint.position, gunPoint.rotation);
 
         Destroy(bullet, 2);
+
+        weaponMusic.Fire();
         //playerStatus.BulletConsume();
     }
 }

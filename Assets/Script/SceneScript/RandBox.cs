@@ -47,7 +47,7 @@ public class RandBox : MonoBehaviour
     private int RandWeapon()
     {
         int randCount = Mathf.Min(currentLevel, maxWeaponCount);
-        Debug.Log("weapon random index: " + randCount);
+
         return Random.Range(1, currentLevel);
     }
 }
