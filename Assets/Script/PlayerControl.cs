@@ -20,6 +20,8 @@ public class PlayerControl : MonoBehaviour
 
     private void Start()
     {
+        leftJoyStick = GameObject.Find("UIControl/joyStick/leftJoyStick/leftFront").GetComponent<JoyStick>();
+        rightJoyStick = GameObject.Find("UIControl/joyStick/rightJoyStick/rightFront").GetComponent<JoyStick>();
         leftJoyStick.OnJoyStickTouchBegin += OnLeftJoyStickBegin;
         leftJoyStick.OnJoyStickTouchMove += OnLeftJoyStickMove;
         leftJoyStick.OnJoyStickTouchEnd += OnLeftJoyStickEnd;

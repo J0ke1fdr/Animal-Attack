@@ -6,7 +6,7 @@ public class EnterGame : MonoBehaviour {
 
     public void onEnterButtonClick()
     {
-        //SceneManager.LoadScene(choosedPlayerIndex.choosedIndex);
-        SceneManager.LoadScene(1);
+        MenuSceneManager.chooseScene.gameObject.SetActive(false);
+        MenuSceneManager.choosePlayerScene.gameObject.SetActive(true);
     }
 }

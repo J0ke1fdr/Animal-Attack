@@ -6,15 +6,17 @@ public class findEnemy : MonoBehaviour
     private GameObject currentEnemy = null;
     public CharacterController controller;
     private int health;
+    public int healthRatio;
     public GameObject boom;
     private bool die = false;
     private bool canWalk = true;
     private float currentTime = 0;
     private Vector3 targetPosition;
     private float randomMoveTime;
-    private LevelManager levelManager;
+    private LevelManager levelManager = null;
+    private LineLevelManager linelevelManager = null;
     private int level = 0;
-    private float speed;
+    private float speed = 0.007f;
     private int damage = 10;
     public GameObject bloodbag;
     public GameObject randbox;
@@ -22,9 +24,19 @@ public class findEnemy : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        levelManager = GameObject.Find("CreateAnimalPoints").GetComponent<LevelManager>();
+        try
+        {
+            levelManager = GameObject.Find("CreateAnimalPoints").GetComponent<LevelManager>();
+        }
+        catch
+        {
+            linelevelManager = GameObject.Find("LineCreateAnimalPoints").GetComponent<LineLevelManager>();
+        }
         controller = GetComponent<CharacterController>();
-        health = 200 + levelManager.getLevel() * 20;
+        if (levelManager != null)
+            health = 200 * healthRatio + levelManager.getLevel() * 20 * healthRatio;
+        else
+            health = 200;
         targetPosition = new Vector3(0, 0, 0);
     }
 
@@ -40,7 +52,8 @@ public class findEnemy : MonoBehaviour
             }
             else*/
             {
-                transform.LookAt(currentEnemy.transform);
+                Vector3 tempPosition = new Vector3(currentEnemy.transform.position.x, transform.position.y, currentEnemy.transform.position.z);
+                transform.LookAt(tempPosition);
                 controller.Move((currentEnemy.transform.position - transform.position) * speed);
             }
         }
@@ -64,12 +77,13 @@ public class findEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (level != levelManager.getLevel())
-        {
-            level = levelManager.getLevel();
-            speed = 0.006f + levelManager.getLevel() * 0.001f;
-            damage = 5 + levelManager.getLevel() * 5;
-        }
+        if (levelManager != null)
+            if (level != levelManager.getLevel())
+            {
+                level = levelManager.getLevel();
+                speed = 0.006f + levelManager.getLevel() * 0.001f;
+                damage = 5 + levelManager.getLevel() * 5;
+            }
     }
 
     private void OnTriggerStay(Collider other)
@@ -113,9 +127,12 @@ public class findEnemy : MonoBehaviour
                     GameObject Randbox = (GameObject)Instantiate(randbox, transform.position, transform.rotation);
                     Randbox.GetComponent<RandBox>().DestroyProp(20);
                 }
-                //GameObject Boom = (GameObject)Instantiate(boom, transform.position, transform.rotation);
+                GameObject Boom = (GameObject)Instantiate(boom, transform.position, transform.rotation);
 
-                levelManager.AnimalDie(gameObject);
+                if (levelManager != null)
+                    levelManager.AnimalDie(gameObject);
+                else
+                    linelevelManager.AnimalDie(gameObject);
                 Destroy(gameObject);
             }
         }

@@ -25,7 +25,7 @@ public class MenuButtonScript : MonoBehaviour {
         }
         else if(gameObject.name == "StartGameWithOthers")
         {
-            StarGameWithOthers();
+            StartGameWithOthers();
         }
         else if(gameObject.name == "Setting")
         {
@@ -38,20 +38,23 @@ public class MenuButtonScript : MonoBehaviour {
        
         //直接选择角色，把选择方式设为0
         MenuSceneManager.mainMenuScene.gameObject.SetActive(false);
-        MenuSceneManager.choosePlayerScene.gameObject.SetActive(true);
         MenuSceneManager.connectScene.gameObject.SetActive(false);
+        MenuSceneManager.choosePlayerScene.gameObject.SetActive(false);
+        MenuSceneManager.chooseScene.gameObject.SetActive(false);
+
+        MenuSceneManager.chooseModel.gameObject.SetActive(true);
 
         MenuSceneManager.gameWay = 0;//单人
 
         Debug.Log("单人游戏");
     }
 
-    private void StarGameWithOthers()
+    private void StartGameWithOthers()
     {
         MenuSceneManager.mainMenuScene.gameObject.SetActive(false);
         MenuSceneManager.choosePlayerScene.gameObject.SetActive(false);
-        MenuSceneManager.connectScene.gameObject.SetActive(true);
-
+        MenuSceneManager.connectScene.gameObject.SetActive(false);
+      
         MenuSceneManager.gameWay = 1;//多人
 
         Debug.Log("多人游戏");

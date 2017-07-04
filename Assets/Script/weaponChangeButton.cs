@@ -4,7 +4,12 @@ using System.Collections;
 public class weaponChangeButton : MonoBehaviour
 {
     //public WeaponManager weaponManager;
-    public PlayerStatusfixed playerStatus;
+    private PlayerStatusfixed playerStatus;
+
+    private void Start()
+    {
+        playerStatus = GameObject.Find("Player").GetComponent<PlayerStatusfixed>();
+    }
 
     public void OnClick()
     {

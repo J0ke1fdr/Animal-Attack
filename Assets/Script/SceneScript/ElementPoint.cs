@@ -1,24 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class ElementPoint : MonoBehaviour
 {
     public float stayTime = 30;
     public GameObject ElementObj;
+    public sliderManager slider;
     private float currentTime = 0;
     private bool playerIn = false;
-    // private bool getElement = false;
+    public Color color;
 
     private void Update()
     {
         if (playerIn)
         {
             currentTime += Time.deltaTime;
+            slider.setValue(stayTime - currentTime);
             if (currentTime >= stayTime)
             {
                 Instantiate(ElementObj, transform.position, transform.rotation);
+                slider.setActive(false);
                 Destroy(gameObject);
-                //  getElement = true;
             }
         }
         else
@@ -33,6 +36,9 @@ public class ElementPoint : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             playerIn = true;
+            slider.setActive(true);
+            slider.setMaxValue(stayTime);
+            slider.setColor(color);
         }
     }
 
@@ -41,6 +47,7 @@ public class ElementPoint : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             playerIn = false;
+            slider.setActive(false);
         }
     }
 }

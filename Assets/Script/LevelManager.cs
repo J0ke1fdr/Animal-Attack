@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     public int enemyCountLive;                  //当前地图剩余怪物数目
     public GameObject crow;
     public GameObject crab;
+    public GameObject pig;
 
     public List<GameObject> AnimalList = new List<GameObject>();
     public Transform[] CreateAnimalPoint = new Transform[7];
@@ -106,6 +107,17 @@ public class LevelManager : MonoBehaviour
         int No = Random.Range(0, 7);
         AnimalList.Add((GameObject)Instantiate(crow, CreateAnimalPoint[No].position, CreateAnimalPoint[No].rotation));
         enemyRemainCountLevel--;
+        if ((enemyRemainCountLevel % 7) == 0)
+        {
+            AnimalList.Add((GameObject)Instantiate(crab, CreateAnimalPoint[No].position, CreateAnimalPoint[No].rotation));
+            enemyRemainCountLevel--;
+        }
+
+        if ((enemyRemainCountLevel % 10) == 0)
+        {
+            AnimalList.Add((GameObject)Instantiate(pig, CreateAnimalPoint[No].position, CreateAnimalPoint[No].rotation));
+            enemyRemainCountLevel--;
+        }
     }
 
     public void AddEnemyCount()

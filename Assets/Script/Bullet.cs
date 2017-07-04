@@ -1,27 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bullet : MonoBehaviour {
+public class Bullet : MonoBehaviour
+{
+    public GameObject blood;
 
-    //public GameObject blood;
     // Use this for initialization
     //public GameObject man;
-    void Start()
+    private void Start()
     {
         GetComponent<Rigidbody>().velocity = transform.forward * 20;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         //GetComponent<Rigidbody2D>().AddForce(100 * transform.up);
         //transform.LookAt(man.transform);
     }
-    void OnCollisionEnter(Collision coll)
+
+    private void OnCollisionEnter(Collision coll)
     {
-        if(coll.gameObject.tag == "Enemy")
+        if (coll.gameObject.tag == "Enemy")
+        {
+            GameObject blood_obj = (GameObject)Instantiate(blood, transform.position, transform.rotation);
+            Destroy(blood_obj, 1);
             coll.gameObject.SendMessage("ApplyDamage", 34);
+        }
+
         //GameObject obj = (GameObject)Instantiate(blood, transform.position + transform.up * 0.3f, transform.rotation);
+
         Destroy(gameObject);
     }
 }

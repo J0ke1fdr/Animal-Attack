@@ -3,8 +3,8 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class chooseScene : MonoBehaviour
-{
+public class chooseScene : MonoBehaviour {
+
     private Text choosedScene;
 
     private void Start()
@@ -16,22 +16,24 @@ public class chooseScene : MonoBehaviour
     public void onChooseClick()
     {
         choosedScene.text = gameObject.name;
-        if (gameObject.name == "Level1")
+        
+        if(gameObject.name == "Level2")
         {
-            choosedPlayerIndex.SceneIndex = 0;
-        }
-        else if (gameObject.name == "Level2")
-        {
-            choosedPlayerIndex.SceneIndex = 1;
+            //choosedPlayerIndex.SceneIndex = 1;
+            MenuSceneManager.choosedScene = 1;
         }
         else if (gameObject.name == "Level3")
         {
-            choosedPlayerIndex.SceneIndex = 2;
+           // choosedPlayerIndex.SceneIndex = 2;
+            MenuSceneManager.choosedScene = 2;
         }
         else if (gameObject.name == "Level4")
         {
-            choosedPlayerIndex.SceneIndex = 3;
+            MenuSceneManager.choosedScene = 3;
+          //  choosedPlayerIndex.SceneIndex = 3;
         }
-        Debug.Log(gameObject.name + " " + choosedPlayerIndex.SceneIndex);
+      //  Debug.Log(gameObject.name + " " + choosedPlayerIndex.SceneIndex);
     }
+
+   
 }

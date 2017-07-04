@@ -18,16 +18,31 @@ public class connectChooseOK : MonoBehaviour {
     {
         if(MenuSceneManager.gameWay == 0)
         {
-            //返回到主菜单
-            MenuSceneManager.choosePlayerScene.gameObject.SetActive(false);
-            MenuSceneManager.mainMenuScene.gameObject.SetActive(true);           
+            
+            
+            if (MenuSceneManager.choosedModel == 0)
+            {
+                MenuSceneManager.mainMenuScene.gameObject.SetActive(false);
+                MenuSceneManager.choosePlayerScene.gameObject.SetActive(false);
+                MenuSceneManager.chooseModel.gameObject.SetActive(true);
+                MenuSceneManager.chooseScene.gameObject.SetActive(false);
+       
+
+            }
+            else if (MenuSceneManager.choosedModel == 1)
+            {
+                MenuSceneManager.chooseScene.gameObject.SetActive(true);
+                MenuSceneManager.choosePlayerScene.gameObject.SetActive(false);
+                MenuSceneManager.chooseModel.gameObject.SetActive(false);
+                MenuSceneManager.mainMenuScene.gameObject.SetActive(true);
+            }
+            //返回到主菜单          
         }
     }
 
     private void submitChoosedPlayer()
     {
-        Debug.Log("进入submitChoosedPlayer:" + "提交" + MenuSceneManager.choosedPlayer);
-        MenuSceneManager.choosePlayerScene.gameObject.SetActive(false);
-        MenuSceneManager.chooseScene.gameObject.SetActive(true);
+        Debug.Log("进入submitChoosedPlayer:" + "提交" + MenuSceneManager.choosedPlayer);     
+        SceneManager.LoadScene(1);
     }
 }

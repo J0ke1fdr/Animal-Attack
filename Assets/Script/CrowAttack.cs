@@ -84,7 +84,7 @@ public class CrowAttack : MonoBehaviour {
                 col.SendMessage("ApplyDamage", find_enemy.getDamage());
                 attackInCD = true;
 
-                Debug.Log("crow attack");
+                //Debug.Log("crow attack");
             }               
         }
     }

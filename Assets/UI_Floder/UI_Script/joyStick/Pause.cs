@@ -16,16 +16,6 @@ public class Pause : MonoBehaviour
         soundButton = GameObject.Find("soundButton").GetComponent<Button>();
     }
 
-    private void Start()
-    {
-        pausePanel.gameObject.SetActive(false);
-    }
-
-    public void onPauseClick()
-    {  
-        Time.timeScale = 0;
-        pausePanel.gameObject.SetActive(true);         
-    }
 
     public void onPlayClick()
     {     

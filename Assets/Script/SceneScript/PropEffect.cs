@@ -4,6 +4,7 @@ using System.Collections;
 public class PropEffect : MonoBehaviour
 {
     public LayerMask effectMask;
+    public LayerMask propMask;
     public ParticleSystem explosionParticle;
     public float maxDamage = 100f;
     public float damageRadius = 50f;
@@ -12,6 +13,7 @@ public class PropEffect : MonoBehaviour
     private void Start()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, damageRadius, effectMask);
+
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].gameObject.tag != "Enemy")
@@ -20,6 +22,18 @@ public class PropEffect : MonoBehaviour
 
             //减血
             colliders[i].gameObject.SendMessage("ApplyDamage", damage);
+        }
+
+        Collider[] Propcolliders = Physics.OverlapSphere(transform.position, damageRadius, propMask);
+        Debug.Log(Propcolliders.Length);
+        for (int i = 0; i < Propcolliders.Length; i++)
+        {
+            if (Propcolliders[i].gameObject.tag != "Prop")
+                continue;
+            int damage = (int)CalculateDamage(Propcolliders[i].transform.position);
+
+            //减血
+            Propcolliders[i].gameObject.SendMessage("ApplyDamage", damage);
         }
         explosionParticle.Play();
         Destroy(gameObject, deadTime);
