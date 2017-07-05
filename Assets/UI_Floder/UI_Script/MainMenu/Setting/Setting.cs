@@ -1,29 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Setting : MonoBehaviour {
-
-    public RectTransform soundSetting;
+public class Setting : MonoBehaviour
+{
+    public Transform settingContent;
 
     private void Awake()
     {
-        soundSetting = GameObject.Find("soundEffect").GetComponent<RectTransform>();
+        settingContent = GameObject.Find("settingContent").GetComponent<Transform>();
     }
+
     // Use this for initialization
-    void Start () {
-        soundSetting.gameObject.SetActive(false);
-	}
-	
-	public void onSettingClick()
+    private void Start()
     {
-        if(!soundSetting.gameObject.activeSelf)
+        settingContent.gameObject.SetActive(false);
+    }
+
+    public void onSettingClick()
+    {
+        if (!settingContent.gameObject.activeSelf)
         {
-            soundSetting.gameObject.SetActive(true);
+            settingContent.gameObject.SetActive(true);
         }
         else
         {
-            soundSetting.gameObject.SetActive(false);
+            settingContent.gameObject.SetActive(false);
         }
-        
     }
 }

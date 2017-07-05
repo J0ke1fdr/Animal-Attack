@@ -2,13 +2,12 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class connectChoosePlayer : MonoBehaviour {
-
-    
+public class connectChoosePlayer : MonoBehaviour
+{
     private Button choosePlayerButton;
     public Sprite[] player;
 
-    public Image choosedPlayerImage; 
+    public Image choosedPlayerImage;
     private Text choosedPlayerName;
     private string Name;
 
@@ -21,19 +20,17 @@ public class connectChoosePlayer : MonoBehaviour {
 
         choosedPlayerName.text = "Farmer";
     }
+
     public void onChooseClick()
     {
-
         switch (choosePlayerButton.name)
         {
-            case "1": MenuSceneManager.choosedPlayer = 0; name = "Farmer"; break;
-            case "2": MenuSceneManager.choosedPlayer = 1;name = "Athlete"; break;
-            case "3": MenuSceneManager.choosedPlayer = 2;name = "Soldier"; break;
-            case "4": MenuSceneManager.choosedPlayer = 3; break;
+            case "Farmer": MenuSceneManager.choosedPlayer = 0; name = "Farmer"; break;
+            case "Athlete": MenuSceneManager.choosedPlayer = 1; name = "Athlete"; break;
+            case "Soldier": MenuSceneManager.choosedPlayer = 2; name = "Soldier"; break;
         }
         // Debug.Log("Left" + choosePlayerManager.leftChoosedPlayer);
         choosedPlayerImage.sprite = player[MenuSceneManager.choosedPlayer];
-        choosedPlayerName.text = name;
-
+        choosedPlayerName.text = gameObject.name;
     }
 }

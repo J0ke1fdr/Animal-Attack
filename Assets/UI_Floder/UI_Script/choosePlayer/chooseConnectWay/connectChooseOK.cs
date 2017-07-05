@@ -1,9 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class connectChooseOK : MonoBehaviour
 {
+    private Text msgShow;
+
+    private void Awake()
+    {
+        msgShow = GameObject.Find("errorMsg").GetComponent<Text>();
+    }
+
+    private void Start()
+    {
+        msgShow.gameObject.SetActive(false);
+    }
+
     public void onButtonClick()
     {
         switch (gameObject.name)
@@ -37,11 +50,22 @@ public class connectChooseOK : MonoBehaviour
 
     private void submitChoosedPlayer()
     {
-        Debug.Log("进入submitChoosedPlayer:" + "提交" + MenuSceneManager.choosedPlayer);
+        if (MenuSceneManager.choosedPlayer <= MenuSceneManager.enablePlayerIndex)
+        {
+            //Debug.Log("进入submitChoosedPlayer:" + "提交" + MenuSceneManager.choosedPlayer);
 
-        PlayerPrefs.SetInt("PlayerIndex", MenuSceneManager.choosedPlayer);
+            PlayerPrefs.SetInt("PlayerIndex", MenuSceneManager.choosedPlayer);
 
-        int LoadScene = ++MenuSceneManager.choosedScene;
-        SceneManager.LoadScene(LoadScene);
+            int LoadScene = ++MenuSceneManager.choosedScene;
+            SceneManager.LoadScene(LoadScene);
+        }
+        else
+        {
+            msgShow.gameObject.SetActive(true);
+            msgShow.text = "当前角色不可用，请通关更多关卡来解锁更多角色";
+
+            msgShow.CrossFadeAlpha(255, 1, true);
+            msgShow.CrossFadeAlpha(0, 3, true);
+        }
     }
 }

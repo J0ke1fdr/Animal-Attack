@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameResult : MonoBehaviour {
-
+public class GameResult : MonoBehaviour
+{
     public static RectTransform gameOverPanel;
     public static RectTransform gameWinPanel;
-	// Use this for initialization
-	void Awake () {
+
+    // Use this for initialization
+    private void Awake()
+    {
         gameOverPanel = GameObject.Find("GameOverPanel").GetComponent<RectTransform>();
         gameWinPanel = GameObject.Find("GameWinPanel").GetComponent<RectTransform>();
-        
     }
 
     private void Start()
@@ -20,13 +21,13 @@ public class GameResult : MonoBehaviour {
 
     public void showGameOverPanel()
     {
+        Time.timeScale = 0;
         gameOverPanel.gameObject.SetActive(true);
     }
 
     public void showGameWinPanel()
     {
+        Time.timeScale = 0;
         gameWinPanel.gameObject.SetActive(true);
     }
-
-
 }
