@@ -13,5 +13,7 @@ public class RoleManager : MonoBehaviour
         int playerIndex = PlayerPrefs.GetInt("PlayerIndex", 0);
         GameObject player = Instantiate(roles[playerIndex], buildPlace.position, buildPlace.rotation) as GameObject;
         player.name = "Player";
+
+        Time.timeScale = 1;
     }
 }
