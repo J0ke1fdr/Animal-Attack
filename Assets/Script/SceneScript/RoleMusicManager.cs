@@ -19,32 +19,52 @@ public class RoleMusicManager : MonoBehaviour
 
     public void FootStep()
     {
-        source.clip = footStep;
-        source.Play();
+        if (CanPlay())
+        {
+            source.clip = footStep;
+            source.Play();
+        }
     }
 
     public void Hurt()
     {
-        source.clip = hurt;
-        source.Play();
+        if (CanPlay())
+        {
+            source.clip = hurt;
+            source.Play();
+        }
     }
 
     public void LowBlood()
     {
-        source.clip = lowBlood;
-        if (!source.isPlaying)
-            source.Play();
+        if (CanPlay())
+        {
+            source.clip = lowBlood;
+            if (!source.isPlaying)
+                source.Play();
+        }
     }
 
     public void Die()
     {
-        source.clip = die;
-        source.Play();
+        if (CanPlay())
+        {
+            source.clip = die;
+            source.Play();
+        }
     }
 
     public void PickUp()
     {
-        source.clip = pickUp;
-        source.Play();
+        if (CanPlay())
+        {
+            source.clip = pickUp;
+            source.Play();
+        }
+    }
+
+    private bool CanPlay()
+    {
+        return PlayerPrefs.GetInt("CharacterMusicSetting") == 0 ? false : true;
     }
 }

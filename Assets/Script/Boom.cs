@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Boom : MonoBehaviour {
+public class Boom : MonoBehaviour
+{
     public GameObject blood;
-	// Use this for initialization
-	void Start () {
-	    for (int i = 0; i < 40; i++)
+
+    // Use this for initialization
+    private void Start()
+    {
+        for (int i = 0; i < 40; i++)
         {
             /*GameObject obj = (GameObject)Instantiate(blood, transform.position,
                    Quaternion.EulerAngles(20f, Random.Range(-5, 5), Random.Range(-5, 5)));*/
@@ -13,9 +16,4 @@ public class Boom : MonoBehaviour {
         }
         Destroy(gameObject);
     }
-	
-	// Update is called once per frame
-	void Update () {
-	    
-	}
 }

@@ -2,32 +2,27 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class connectChooseOK : MonoBehaviour {
-
+public class connectChooseOK : MonoBehaviour
+{
     public void onButtonClick()
     {
-
-        switch(gameObject.name)
+        switch (gameObject.name)
         {
-            case "backButton":Back();break;
+            case "backButton": Back(); break;
             case "oKButton": submitChoosedPlayer(); break;
         }
     }
 
     private void Back()
     {
-        if(MenuSceneManager.gameWay == 0)
+        if (MenuSceneManager.gameWay == 0)
         {
-            
-            
             if (MenuSceneManager.choosedModel == 0)
             {
                 MenuSceneManager.mainMenuScene.gameObject.SetActive(false);
                 MenuSceneManager.choosePlayerScene.gameObject.SetActive(false);
                 MenuSceneManager.chooseModel.gameObject.SetActive(true);
                 MenuSceneManager.chooseScene.gameObject.SetActive(false);
-       
-
             }
             else if (MenuSceneManager.choosedModel == 1)
             {
@@ -36,7 +31,7 @@ public class connectChooseOK : MonoBehaviour {
                 MenuSceneManager.chooseModel.gameObject.SetActive(false);
                 MenuSceneManager.mainMenuScene.gameObject.SetActive(false);
             }
-            //返回到主菜单          
+            //返回到主菜单
         }
     }
 
@@ -44,11 +39,9 @@ public class connectChooseOK : MonoBehaviour {
     {
         Debug.Log("进入submitChoosedPlayer:" + "提交" + MenuSceneManager.choosedPlayer);
 
-        PlayerPrefs.SetInt("PlayerIndex",MenuSceneManager.choosedPlayer);
+        PlayerPrefs.SetInt("PlayerIndex", MenuSceneManager.choosedPlayer);
 
-        int LoadScene = MenuSceneManager.choosedScene++;
+        int LoadScene = ++MenuSceneManager.choosedScene;
         SceneManager.LoadScene(LoadScene);
-
-
     }
 }

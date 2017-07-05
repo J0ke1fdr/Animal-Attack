@@ -13,11 +13,17 @@ public class WeaponMusic : MonoBehaviour
     // Update is called once per frame
     public void Fire()
     {
-        audioSource.Play();
+        if (CanPlay())
+            audioSource.Play();
     }
 
     public void StopFire()
     {
         audioSource.Pause();
+    }
+
+    private bool CanPlay()
+    {
+        return PlayerPrefs.GetInt("CharacterMusicSetting") == 0 ? false : true;
     }
 }

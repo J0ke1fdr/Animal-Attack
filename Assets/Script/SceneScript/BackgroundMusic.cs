@@ -8,17 +8,23 @@ public class BackgroundMusic : MonoBehaviour
 
     public AudioClip[] clips;
 
+    private bool setting;
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = clips[RandClip()];
-        audioSource.Play();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (!audioSource.isPlaying)
+        setting = PlayerPrefs.GetInt("MusicSetting", 1) == 0 ? false : true;
+
+        if (!setting && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+        else if (!audioSource.isPlaying && setting)
         {
             audioSource.clip = clips[RandClip()];
             audioSource.Play();

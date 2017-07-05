@@ -26,7 +26,8 @@ public class findEnemy : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        if (gameObject.name != "Pig")
+            audioSource = GetComponent<AudioSource>();
         try
         {
             levelManager = GameObject.Find("CreateAnimalPoints").GetComponent<LevelManager>();
@@ -44,7 +45,7 @@ public class findEnemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    private void FixedUpdate()
     {
         if (currentEnemy != null && canWalk)
         {
@@ -58,8 +59,6 @@ public class findEnemy : MonoBehaviour
                 Vector3 tempPosition = new Vector3(currentEnemy.transform.position.x, transform.position.y, currentEnemy.transform.position.z);
                 transform.LookAt(tempPosition);
                 controller.Move((currentEnemy.transform.position - transform.position) * speed);
-                if (gameObject.name == "Pig")
-                    audioSource.Play();
             }
         }
         else
@@ -80,7 +79,7 @@ public class findEnemy : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (levelManager != null)
             if (level != levelManager.getLevel())
@@ -115,7 +114,7 @@ public class findEnemy : MonoBehaviour
 
     private void ApplyDamage(int damage)
     {
-        if (gameObject.name != "Pig" && !audioSource.isPlaying)
+        if (gameObject.name != "Pig" && !audioSource.isPlaying && CanPlay())
             audioSource.Play();
         health -= damage;
         if (health <= 0 && die == false)
@@ -158,5 +157,10 @@ public class findEnemy : MonoBehaviour
     public int getDamage()
     {
         return damage;
+    }
+
+    private bool CanPlay()
+    {
+        return PlayerPrefs.GetInt("CharacterMusicSetting") == 0 ? false : true;
     }
 }

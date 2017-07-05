@@ -66,5 +66,10 @@ public class Saw : MonoBehaviour
             Debug.Log("damage at " + Time.time);
             col.gameObject.SendMessage("ApplyDamage", basicATK);
         }
+
+        if (col.tag == "Prop" && damage)
+        {
+            col.gameObject.SendMessage("ApplyDamage", basicATK);
+        }
     }
 }

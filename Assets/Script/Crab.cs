@@ -112,7 +112,7 @@ public class Crab : MonoBehaviour
 
     private void ApplyDamage(int damage)
     {
-        if (!audioSource.isPlaying)
+        if (!audioSource.isPlaying && CanPlay())
             audioSource.Play();
         health -= damage;
         if (health <= 0 && die == false)
@@ -125,5 +125,10 @@ public class Crab : MonoBehaviour
                 linelevelManager.AnimalDie(gameObject);
             Destroy(gameObject);
         }
+    }
+
+    private bool CanPlay()
+    {
+        return PlayerPrefs.GetInt("CharacterMusicSetting") == 0 ? false : true;
     }
 }

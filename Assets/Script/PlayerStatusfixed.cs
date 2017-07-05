@@ -17,6 +17,8 @@ public class PlayerStatusfixed : MonoBehaviour
     private float timeRecord;
     private weaponChangeShow weaponShow;
     private RoleMusicManager musicManager;
+    private GameResult gameResult;
+    public msgShow msg;
 
     private void Start()
     {
@@ -26,7 +28,7 @@ public class PlayerStatusfixed : MonoBehaviour
         timeRecord = Time.time;
 
         weaponShow = GameObject.Find("weaponChangeButton").GetComponent<weaponChangeShow>();
-
+        gameResult = GameObject.Find("UIControl/otherShow/GameResult").GetComponent<GameResult>();
         musicManager = GetComponent<RoleMusicManager>();
     }
 
@@ -170,6 +172,7 @@ public class PlayerStatusfixed : MonoBehaviour
         if (health <= 0)
         {
             musicManager.Die();
+            gameResult.showGameOverPanel();
         }
     }
 
@@ -186,5 +189,10 @@ public class PlayerStatusfixed : MonoBehaviour
         health += h;
         if (health > 100)
             health = 100;
+    }
+
+    public void ShowMsg(int index)
+    {
+        msg.ShowMsg(index);
     }
 }

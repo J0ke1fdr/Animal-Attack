@@ -39,7 +39,9 @@ public class RandBox : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && canPickUp)
         {
-            other.gameObject.SendMessage("AddWeaponByIndex", RandWeapon());
+            int weaponIndex = RandWeapon();
+            other.gameObject.SendMessage("AddWeaponByIndex", weaponIndex);
+            other.gameObject.SendMessage("ShowMsg", weaponIndex);
             Destroy(gameObject);
         }
     }

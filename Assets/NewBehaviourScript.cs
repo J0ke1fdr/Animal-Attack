@@ -6,15 +6,23 @@ public class NewBehaviourScript : MonoBehaviour
 {
     // Use this for initialization
 
-    Button button;
-    void Start()
-    {
-        button = GetComponent<Button>();
-        button.onClick.AddListener(Test);
-    }
+    public BackgroundMusic bgm;
 
-    void Test()
+    private void Update()
     {
-        Debug.Log("onclick");
+        if (Input.GetKeyDown(KeyCode.Space))
+            PlayerPrefs.SetInt("MusicSetting", 0);
+        if (Input.GetKeyDown(KeyCode.C))
+            PlayerPrefs.SetInt("MusicSetting", 1);
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            PlayerPrefs.SetInt("CharacterMusicSetting", 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            PlayerPrefs.SetInt("CharacterMusicSetting", 0);
+        }
     }
 }

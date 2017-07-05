@@ -12,6 +12,8 @@ public class PropEffect : MonoBehaviour
 
     private void Start()
     {
+        MusicPlay();
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, damageRadius, effectMask);
 
         for (int i = 0; i < colliders.Length; i++)
@@ -36,6 +38,7 @@ public class PropEffect : MonoBehaviour
             Propcolliders[i].gameObject.SendMessage("ApplyDamage", damage);
         }
         explosionParticle.Play();
+
         Destroy(gameObject, deadTime);
     }
 
@@ -47,5 +50,12 @@ public class PropEffect : MonoBehaviour
         float damage = relativeDistance * maxDamage;
         damage = Mathf.Max(0, damage);
         return damage;
+    }
+
+    public void MusicPlay()
+    {
+        bool musicPlay = PlayerPrefs.GetInt("CharacterMusicSetting", 1) == 1 ? true : false;
+        if (musicPlay)
+            GetComponent<AudioSource>().Play();
     }
 }

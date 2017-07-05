@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PigAttack : MonoBehaviour {
+public class PigAttack : MonoBehaviour
+{
     public GameObject pig;
     private bool wantAttack = false;
     private bool attack = false;
@@ -11,18 +12,19 @@ public class PigAttack : MonoBehaviour {
     private CharacterController controller;
     private Animator anim;
     private AnimatorStateInfo stateInfo;
+    private AudioSource audioSource;
 
-    void Start()
+    private void Start()
     {
         //attack_flag = true;
         //anim = GetComponent<Animator>();
         anim = pig.GetComponent<Animator>();
         find_enemy = pig.GetComponent<findEnemy>();
         controller = pig.GetComponent<CharacterController>();
-
+        audioSource = GetComponent<AudioSource>();
     }
 
-    void Update()
+    private void Update()
     {
         stateInfo = anim.GetCurrentAnimatorStateInfo(0);
         if (stateInfo.IsName("Base Layer.pig_idle"))
@@ -48,6 +50,10 @@ public class PigAttack : MonoBehaviour {
             anim.SetBool("walk", false);
             anim.SetBool("idle", true);
             anim.SetBool("attack", true);
+            if (CanPlay() && !audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
         //攻击状态下
         if (stateInfo.IsName("Base Layer.pig_attack"))
@@ -61,30 +67,35 @@ public class PigAttack : MonoBehaviour {
             attack = false;
             find_enemy.StartWalk();
         }
-
     }
 
-    void OnTriggerStay(Collider col)
+    private void OnTriggerStay(Collider col)
     {
         if (col.tag == "Player")
         {
             wantAttack = true;
             if (attack && !attackInCD)
             {
-                col.SendMessage("ApplyDamage", find_enemy.getDamage()*0.5f);
+                col.SendMessage("ApplyDamage", find_enemy.getDamage() * 0.5f);
                 attackInCD = true;
 
                 //Debug.Log("pig attack");
             }
         }
     }
-    void OnTriggerExit(Collider col)
+
+    private void OnTriggerExit(Collider col)
     {
         if (col.tag == "Player")
         {
             wantAttack = false;
-            anim.SetBool("attack", false); 
+            anim.SetBool("attack", false);
             anim.SetBool("idle", true);
         }
+    }
+
+    private bool CanPlay()
+    {
+        return PlayerPrefs.GetInt("CharacterMusicSetting") == 0 ? false : true;
     }
 }

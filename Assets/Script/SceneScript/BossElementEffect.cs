@@ -7,6 +7,7 @@ public class BossElementEffect : MonoBehaviour
 
     private void Start()
     {
+        MusicPlay();
         GetComponent<ParticleSystem>().Play();
         StartCoroutine("AppearBoss");
         Destroy(gameObject, 0.5f);
@@ -16,5 +17,12 @@ public class BossElementEffect : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         Instantiate(boss, transform.position, Quaternion.identity);
+    }
+
+    public void MusicPlay()
+    {
+        bool musicPlay = PlayerPrefs.GetInt("CharacterMusicSetting", 1) == 1 ? true : false;
+        if (musicPlay)
+            GetComponent<AudioSource>().Play();
     }
 }

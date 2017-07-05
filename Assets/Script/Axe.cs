@@ -110,5 +110,9 @@ public class Axe : MonoBehaviour
             //Debug.Log("ATK: " + actualATK);
             col.gameObject.SendMessage("ApplyDamage", actualATK);
         }
+        if (col.tag == "Prop" && axeAttack)
+        {
+            col.gameObject.SendMessage("ApplyDamage", actualATK);
+        }
     }
 }
