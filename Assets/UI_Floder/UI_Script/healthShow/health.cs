@@ -3,8 +3,8 @@ using System.Collections;
 using System.Text;
 using UnityEngine.UI;
 
-public class health : MonoBehaviour {
-
+public class health : MonoBehaviour
+{
     private int maxHealth = 100;//最大血量
     private int healthValue = 100;//当前血量
     private Slider healthSlider;
@@ -13,8 +13,10 @@ public class health : MonoBehaviour {
     private Text textShow;
 
     private PlayerStatusfixed playerStatus;
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    private void Start()
+    {
         healthSlider = gameObject.GetComponent<Slider>();
         healthSlider.maxValue = maxHealth;
         textShow = GameObject.Find("healthTextShow").GetComponent<Text>();
@@ -23,38 +25,38 @@ public class health : MonoBehaviour {
         playerStatus = GameObject.Find("Player").GetComponent<PlayerStatusfixed>();
 
         healthSlider.enabled = false;
-        healthSlider.maxValue = maxHealth;
+        healthSlider.maxValue = playerStatus.GetMaxHealth();
     }
-	
-	// Update is called once per frame
-	void Update () {
-      
+
+    // Update is called once per frame
+    private void Update()
+    {
         if (healthValue > maxHealth)
         {
             healthValue = maxHealth;
         }
-        else if(healthValue < 0)
+        else if (healthValue < 0)
         {
             healthValue = 0;
         }
-     
+
         healthSlider.value = playerStatus.GetHealth();
 
-        if(healthSlider.value == 0)
+        if (healthSlider.value == 0)
         {
-            if(FillArea.gameObject.activeSelf)
+            if (FillArea.gameObject.activeSelf)
             {
                 FillArea.gameObject.SetActive(false);
             }
         }
         else
         {
-            if(!FillArea.gameObject.activeSelf)
+            if (!FillArea.gameObject.activeSelf)
             {
                 FillArea.gameObject.SetActive(true);
             }
         }
 
         textShow.text = healthSlider.value + "/" + healthSlider.maxValue;
-	}
+    }
 }

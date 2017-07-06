@@ -13,6 +13,7 @@ public class PlayerStatusfixed : MonoBehaviour
     private GameObject inUseWeapon;             //当前使用的武器
     private int inUseWeaponIndex = 0;           //当前使用的武器编号
 
+    public int maxHealth = 100;
     private int health;
     private float timeRecord;
     private weaponChangeShow weaponShow;
@@ -22,7 +23,7 @@ public class PlayerStatusfixed : MonoBehaviour
 
     private void Start()
     {
-        health = 100;
+        health = maxHealth;
 
         initWeaponHoldingState();           //初始化武器持有状态
         timeRecord = Time.time;
@@ -163,6 +164,11 @@ public class PlayerStatusfixed : MonoBehaviour
     public int GetHealth()
     {
         return health;
+    }
+
+    public int GetMaxHealth()
+    {
+        return maxHealth;
     }
 
     private void ApplyDamage(int damage)
