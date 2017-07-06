@@ -9,15 +9,15 @@ public class Axe : MonoBehaviour
     public float minChargeTime = 0.4f;                      //蓄力最少时间要求
     public float maxChargeTime = 1.7f;                        //蓄力增益最大所需时间
 
-    public BoxCollider boxCollider1;
-    public BoxCollider boxCollider2;
+    public Animator anim;
+    public BoxCollider boxCollider;
 
     private float actualATK = 100f;
     private bool charge = false;
     private bool axeAttack = false;
 
     private float timeRecord;
-    private Animator anim;
+    //private Animator anim;
     private AnimatorStateInfo stateInfo;
     private PlayerControl playerControl;
     private PlayerStatusfixed playerStatus;
@@ -26,7 +26,7 @@ public class Axe : MonoBehaviour
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         //stateInfo = anim.GetCurrentAnimatorStateInfo(0);
         playerControl = GameObject.Find("Player").GetComponent<PlayerControl>();
         playerStatus = GameObject.Find("Player").GetComponent<PlayerStatusfixed>();
@@ -39,8 +39,7 @@ public class Axe : MonoBehaviour
         stateInfo = anim.GetCurrentAnimatorStateInfo(0);
         if (stateInfo.IsName("Base Layer.axe_idle"))
         {
-            boxCollider1.enabled = false;
-            boxCollider2.enabled = false;
+            boxCollider.enabled = false;
         }
         //空闲状态下右手柄按下，开始蓄力
         if (stateInfo.IsName("Base Layer.axe_idle") && playerControl.CheckAttack() && !charge)
@@ -56,8 +55,7 @@ public class Axe : MonoBehaviour
         {
             charge = false;
             axeAttack = true;
-            boxCollider1.enabled = true;
-            boxCollider2.enabled = true;
+            boxCollider.enabled = true;
             CalActualATK();
             playerStatus.BulletConsume();
 

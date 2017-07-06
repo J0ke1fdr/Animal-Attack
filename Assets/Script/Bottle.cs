@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bottle : MonoBehaviour {
+public class Bottle : MonoBehaviour
+{
     public GameObject blood;
+    public GameObject grassBroken;
+
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         GetComponent<Rigidbody>().velocity += transform.forward * 10 + new Vector3(0, 6, 0);
     }
 
     // Update is called once per frame
-    void OnCollisionEnter(Collision coll)
+    private void OnCollisionEnter(Collision coll)
     {
         if (coll.gameObject.tag == "Player")
         {
@@ -19,18 +22,19 @@ public class Bottle : MonoBehaviour {
         }
         else
         {
-            Destroy(gameObject);
+            Instantiate(grassBroken, transform.position, transform.rotation);
             for (int i = 0; i < 20; i++)
             {
                 /*GameObject obj = (GameObject)Instantiate(blood, transform.position,
                        Quaternion.EulerAngles(20f, Random.Range(-5, 5), Random.Range(-5, 5)));*/
                 GameObject obj = (GameObject)Instantiate(blood, transform.position, transform.rotation);
             }
+            Destroy(gameObject);
         }
-            
+
         //GameObject obj = (GameObject)Instantiate(blood, transform.position + transform.up * 0.3f, transform.rotation);
-        
     }
+
     private void Update()
     {
         transform.Rotate(2, 0, 0);
