@@ -27,7 +27,6 @@ public class PropEffect : MonoBehaviour
         }
 
         Collider[] Propcolliders = Physics.OverlapSphere(transform.position, damageRadius, propMask);
-        Debug.Log(Propcolliders.Length);
         for (int i = 0; i < Propcolliders.Length; i++)
         {
             if (Propcolliders[i].gameObject.tag != "Prop")
