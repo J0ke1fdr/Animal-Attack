@@ -35,12 +35,14 @@ public class connectChooseOK : MonoBehaviour
                 MenuSceneManager.mainMenuScene.gameObject.SetActive(false);
                 MenuSceneManager.choosePlayerScene.gameObject.SetActive(false);
                 MenuSceneManager.chooseModel.gameObject.SetActive(true);
+                MenuSceneManager.chooseAdventureLevelScene.gameObject.SetActive(false);
                 MenuSceneManager.chooseScene.gameObject.SetActive(false);
             }
             else if (MenuSceneManager.choosedModel == 1)
             {
                 MenuSceneManager.chooseScene.gameObject.SetActive(true);
                 MenuSceneManager.choosePlayerScene.gameObject.SetActive(false);
+                MenuSceneManager.chooseAdventureLevelScene.gameObject.SetActive(false);
                 MenuSceneManager.chooseModel.gameObject.SetActive(false);
                 MenuSceneManager.mainMenuScene.gameObject.SetActive(false);
             }
@@ -56,8 +58,10 @@ public class connectChooseOK : MonoBehaviour
 
             PlayerPrefs.SetInt("PlayerIndex", MenuSceneManager.choosedPlayer);
 
-            int LoadScene = ++MenuSceneManager.choosedScene;
-            SceneManager.LoadScene(LoadScene);
+            //  int LoadScene = ++MenuSceneManager.choosedScene;
+
+            Time.timeScale = 1;
+            SceneManager.LoadScene("LoadingScene");
         }
         else
         {

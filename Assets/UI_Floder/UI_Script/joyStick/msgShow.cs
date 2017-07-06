@@ -10,7 +10,7 @@ public class msgShow : MonoBehaviour
     // Use this for initialization
     private void Awake()
     {
-        levelShowText = GetComponent<Text>();
+        levelShowText = GameObject.Find("msgShow").GetComponent<Text>();
     }
 
     public void ShowMsg(int GunIndex)

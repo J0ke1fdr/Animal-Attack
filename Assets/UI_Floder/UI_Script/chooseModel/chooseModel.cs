@@ -11,7 +11,7 @@ public class chooseModel : MonoBehaviour
 
     private void Awake()
     {
-        Level1 = GameObject.Find("Level1").GetComponent<Image>();
+        Level1 = GameObject.Find("adventureModel").GetComponent<Image>();
         otherModel = GameObject.Find("otherModel").GetComponent<Image>();
     }
 
@@ -23,9 +23,9 @@ public class chooseModel : MonoBehaviour
             otherModel.sprite = otherModel1picShow[0];
         }
 
-        MenuSceneManager.choosedScene = 0;
+        MenuSceneManager.choosedScene = 1;
         MenuSceneManager.choosedModel = 0;
-        Debug.Log("模式" + MenuSceneManager.choosedModel);
+        //  Debug.Log("模式" + MenuSceneManager.choosedModel);
     }
 
     public void onOtherModelClick()
@@ -37,7 +37,7 @@ public class chooseModel : MonoBehaviour
         }
 
         MenuSceneManager.choosedModel = 1;
-        MenuSceneManager.choosedScene = 1;
+        MenuSceneManager.choosedScene = 2;
         Debug.Log("模式1" + MenuSceneManager.choosedModel);
     }
 }

@@ -6,6 +6,7 @@ public class repeatButtonClick : MonoBehaviour {
 
 	public void onRepeatClick()
     {
-        SceneManager.LoadScene( SceneManager.GetActiveScene().name);    
+        // SceneManager.LoadScene( SceneManager.GetActiveScene().name);    
+        SceneManager.LoadScene("LoadingScene");
     }
 }

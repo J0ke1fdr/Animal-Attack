@@ -13,7 +13,6 @@ public class chooseScene : MonoBehaviour
     private Image dayScene;
     private Image nightScene;
 
-
     private void Awake()
     {
         dayScene = GameObject.Find("Level2").GetComponent<Image>();
@@ -22,14 +21,11 @@ public class chooseScene : MonoBehaviour
 
     public void onChooseClick()
     {
-        //   choosedScene.text = gameObject.name;
-
         if (gameObject.name == "Level2")
         {
-            //choosedPlayerIndex.SceneIndex = 1;
-            MenuSceneManager.choosedScene = 1;
+            MenuSceneManager.choosedScene = 2;
 
-            if(dayScene.sprite != dayScenePic[1])
+            if (dayScene.sprite != dayScenePic[1])
             {
                 dayScene.sprite = dayScenePic[1];
                 nightScene.sprite = nightScenePic[0];
@@ -37,8 +33,7 @@ public class chooseScene : MonoBehaviour
         }
         else if (gameObject.name == "Level3")
         {
-            // choosedPlayerIndex.SceneIndex = 2;
-            MenuSceneManager.choosedScene = 2;
+            MenuSceneManager.choosedScene = 3;
 
             if (nightScene.sprite != nightScenePic[1])
             {
@@ -46,11 +41,5 @@ public class chooseScene : MonoBehaviour
                 nightScene.sprite = nightScenePic[1];
             }
         }
-        else if (gameObject.name == "Level4")
-        {
-         //   MenuSceneManager.choosedScene = 3;
-            //  choosedPlayerIndex.SceneIndex = 3;
-        }
-        //  Debug.Log(gameObject.name + " " + choosedPlayerIndex.SceneIndex);
     }
 }

@@ -14,7 +14,7 @@ public class levelShow : MonoBehaviour
 
     public void ShowCurrentLevel(int level)
     {
-        levelShowText.text = "关卡 " + level;
+        levelShowText.text = "Level " + level;
         levelShowText.CrossFadeAlpha(255, 1, true);
         levelShowText.CrossFadeAlpha(0, 3, true);
     }
