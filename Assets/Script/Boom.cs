@@ -4,10 +4,12 @@ using System.Collections;
 public class Boom : MonoBehaviour
 {
     public GameObject blood;
+    public GameObject brokenGrass;
 
     // Use this for initialization
     private void Start()
     {
+        Instantiate(brokenGrass, transform.position, transform.rotation);
         for (int i = 0; i < 40; i++)
         {
             /*GameObject obj = (GameObject)Instantiate(blood, transform.position,

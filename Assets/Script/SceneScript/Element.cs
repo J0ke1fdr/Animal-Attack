@@ -15,6 +15,7 @@ public class Element : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             manager.GetElement();
+            other.SendMessage("PickUpElement");
             Destroy(gameObject);
         }
     }

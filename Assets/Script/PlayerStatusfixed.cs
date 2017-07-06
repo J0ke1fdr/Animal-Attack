@@ -186,6 +186,7 @@ public class PlayerStatusfixed : MonoBehaviour
 
     private void ApplyHealth(int h)
     {
+        musicManager.PickUpBloodBag();
         health += h;
         if (health > 100)
             health = 100;

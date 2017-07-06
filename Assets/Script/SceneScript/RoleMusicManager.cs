@@ -11,6 +11,8 @@ public class RoleMusicManager : MonoBehaviour
     public AudioClip lowBlood;
     public AudioClip die;
     public AudioClip pickUp;
+    public AudioClip pickUpBloodBag;
+    public AudioClip pickUpElement;
 
     private void Start()
     {
@@ -59,6 +61,24 @@ public class RoleMusicManager : MonoBehaviour
         if (CanPlay())
         {
             source.clip = pickUp;
+            source.Play();
+        }
+    }
+
+    public void PickUpBloodBag()
+    {
+        if (CanPlay())
+        {
+            source.clip = pickUpBloodBag;
+            source.Play();
+        }
+    }
+
+    public void PickUpElement()
+    {
+        if (CanPlay())
+        {
+            source.clip = pickUpElement;
             source.Play();
         }
     }
