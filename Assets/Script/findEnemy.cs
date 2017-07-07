@@ -56,9 +56,9 @@ public class findEnemy : MonoBehaviour
             }
             else*/
             {
-                Vector3 tempPosition = new Vector3(currentEnemy.transform.position.x, transform.position.y, currentEnemy.transform.position.z);
-                transform.LookAt(tempPosition);
-                controller.Move((currentEnemy.transform.position - transform.position) * speed);
+                Vector3 tempPosition = new Vector3(currentEnemy.transform.position.x - transform.position.x, 0, currentEnemy.transform.position.z - transform.position.z);
+                transform.LookAt(new Vector3(currentEnemy.transform.position.x, transform.position.y, currentEnemy.transform.position.z));
+                controller.Move(tempPosition * speed);
             }
         }
         else
