@@ -29,5 +29,6 @@ public class GameResult : MonoBehaviour
     {
         Time.timeScale = 0;
         gameWinPanel.gameObject.SetActive(true);
+        PlayerPrefs.SetInt("enablePlayerIndex", 2);
     }
 }
